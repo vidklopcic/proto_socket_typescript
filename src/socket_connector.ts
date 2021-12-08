@@ -18,7 +18,7 @@ export class SocketConnector {
                     resolve(null);
                 } else {
                     this.connectedChanges
-                        .pipe(first((v => v)))
+                        .pipe(first((v) => v))
                         .subscribe((e) => resolve(null));
                 }
             }

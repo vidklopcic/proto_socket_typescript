@@ -2,8 +2,9 @@ import {filter, first, firstValueFrom, Subject, timeout} from "rxjs";
 import {proto} from "./proto/messages";
 import {SocketConnector} from "./socket_connector";
 import {v4 as uuidv4} from 'uuid';
+import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "./socket_messages";
 
-class SocketApi {
+export class SocketApi {
     noCache: boolean = false;
     private _token = null as string | null;
     apiVersion = 1;
@@ -66,7 +67,7 @@ class SocketApi {
 
     async sendMessage(
         message: SocketTxMessage<any>,
-        {ack = false, timeoutMs = 10000}
+        {ack = false, timeoutMs = 10000} = {}
     ): Promise<SocketApiTxStatus> {
         this._txMessageHandlers.get(message.messageType)?.next(message);
         const instanceUuid = uuidv4();
@@ -128,9 +129,9 @@ class SocketApi {
     }
 }
 
-enum SocketApiAckStatus { success, connectionError, timeout, messageError }
+export enum SocketApiAckStatus { success, connectionError, timeout, messageError }
 
-class SocketApiTxStatus {
+export class SocketApiTxStatus {
     status: SocketApiAckStatus;
     errorMessage: string | null;
     asyncProgress: Subject<proto.RxAsyncProgress> | null;

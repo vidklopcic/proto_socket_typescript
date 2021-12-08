@@ -1,5 +1,6 @@
 {
   "protos": [
     "$FPS_PROTO_ROOT"
-  ]
+  ],
+  "proto-socket-module": true
 }

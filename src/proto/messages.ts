@@ -1,12 +1,12 @@
-import {authentication, socket_api, uploader, sfiles, form_errors} from "./compiled";
+import {SerializableMessageStatic, SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
+import {authentication, form_errors, uploader, sfiles, socket_api} from "./compiled";
 
 export namespace proto {
-
-
 
 export class TxAppleLogin extends SocketTxMessage<authentication.AppleLogin> {
     static type: string = 'apple-login';
     proto: authentication.AppleLogin;
+    protoClass = authentication.AppleLogin;
     
 
     constructor(proto: authentication.AppleLogin) {
@@ -14,7 +14,7 @@ export class TxAppleLogin extends SocketTxMessage<authentication.AppleLogin> {
         this.proto = proto;
     }
 
-    static create(properties: authentication.IAppleLogin) {
+    static create(properties: authentication.IAppleLogin = {}) {
         return new TxAppleLogin(authentication.AppleLogin.create(properties));
     }
 }
@@ -23,6 +23,7 @@ export class TxAppleLogin extends SocketTxMessage<authentication.AppleLogin> {
 export class TxLogin extends SocketTxMessage<authentication.Login> {
     static type: string = 'login';
     proto: authentication.Login;
+    protoClass = authentication.Login;
     
 
     constructor(proto: authentication.Login) {
@@ -30,7 +31,7 @@ export class TxLogin extends SocketTxMessage<authentication.Login> {
         this.proto = proto;
     }
 
-    static create(properties: authentication.ILogin) {
+    static create(properties: authentication.ILogin = {}) {
         return new TxLogin(authentication.Login.create(properties));
     }
 }
@@ -38,11 +39,15 @@ export class TxLogin extends SocketTxMessage<authentication.Login> {
 
 export class RxLoginError extends SocketRxMessage<authentication.LoginError> {
     static type: string = 'login-error';
-    proto = new authentication.LoginError();
+    proto = authentication.LoginError.create({});
+    protoClass = authentication.LoginError;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxLoginError.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -53,11 +58,15 @@ export class RxLoginError extends SocketRxMessage<authentication.LoginError> {
 
 export class RxLoginToken extends SocketRxMessage<authentication.LoginToken> {
     static type: string = 'login-token';
-    proto = new authentication.LoginToken();
+    proto = authentication.LoginToken.create({});
+    protoClass = authentication.LoginToken;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxLoginToken.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -68,11 +77,15 @@ export class RxLoginToken extends SocketRxMessage<authentication.LoginToken> {
 
 export class RxTokenInvalid extends SocketRxMessage<authentication.TokenInvalid> {
     static type: string = 'token-invalid';
-    proto = new authentication.TokenInvalid();
+    proto = authentication.TokenInvalid.create({});
+    protoClass = authentication.TokenInvalid;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxTokenInvalid.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -84,6 +97,7 @@ export class RxTokenInvalid extends SocketRxMessage<authentication.TokenInvalid>
 export class TxVerifyToken extends SocketTxMessage<authentication.VerifyToken> {
     static type: string = 'verify-token';
     proto: authentication.VerifyToken;
+    protoClass = authentication.VerifyToken;
     
 
     constructor(proto: authentication.VerifyToken) {
@@ -91,7 +105,7 @@ export class TxVerifyToken extends SocketTxMessage<authentication.VerifyToken> {
         this.proto = proto;
     }
 
-    static create(properties: authentication.IVerifyToken) {
+    static create(properties: authentication.IVerifyToken = {}) {
         return new TxVerifyToken(authentication.VerifyToken.create(properties));
     }
 }
@@ -99,11 +113,15 @@ export class TxVerifyToken extends SocketTxMessage<authentication.VerifyToken> {
 
 export class RxFormErrors extends SocketRxMessage<form_errors.FormErrors> {
     static type: string = 'form-errors';
-    proto = new form_errors.FormErrors();
+    proto = form_errors.FormErrors.create({});
+    protoClass = form_errors.FormErrors;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxFormErrors.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -115,6 +133,7 @@ export class RxFormErrors extends SocketRxMessage<form_errors.FormErrors> {
 export class TxDeleteFile extends SocketTxMessage<sfiles.DeleteFile> {
     static type: string = 'delete-file';
     proto: sfiles.DeleteFile;
+    protoClass = sfiles.DeleteFile;
     
 
     constructor(proto: sfiles.DeleteFile) {
@@ -122,7 +141,7 @@ export class TxDeleteFile extends SocketTxMessage<sfiles.DeleteFile> {
         this.proto = proto;
     }
 
-    static create(properties: sfiles.IDeleteFile) {
+    static create(properties: sfiles.IDeleteFile = {}) {
         return new TxDeleteFile(sfiles.DeleteFile.create(properties));
     }
 }
@@ -130,11 +149,15 @@ export class TxDeleteFile extends SocketTxMessage<sfiles.DeleteFile> {
 
 export class RxUploadDone extends SocketRxMessage<sfiles.UploadDone> {
     static type: string = 'upload-done';
-    proto = new sfiles.UploadDone();
+    proto = sfiles.UploadDone.create({});
+    protoClass = sfiles.UploadDone;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUploadDone.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -146,6 +169,7 @@ export class RxUploadDone extends SocketRxMessage<sfiles.UploadDone> {
 export class TxUploadEnd extends SocketTxMessage<sfiles.UploadEnd> {
     static type: string = 'upload-end';
     proto: sfiles.UploadEnd;
+    protoClass = sfiles.UploadEnd;
     
 
     constructor(proto: sfiles.UploadEnd) {
@@ -153,7 +177,7 @@ export class TxUploadEnd extends SocketTxMessage<sfiles.UploadEnd> {
         this.proto = proto;
     }
 
-    static create(properties: sfiles.IUploadEnd) {
+    static create(properties: sfiles.IUploadEnd = {}) {
         return new TxUploadEnd(sfiles.UploadEnd.create(properties));
     }
 }
@@ -161,11 +185,15 @@ export class TxUploadEnd extends SocketTxMessage<sfiles.UploadEnd> {
 
 export class RxUploadProgress extends SocketRxMessage<sfiles.UploadProgress> {
     static type: string = 'upload-progress';
-    proto = new sfiles.UploadProgress();
+    proto = sfiles.UploadProgress.create({});
+    protoClass = sfiles.UploadProgress;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUploadProgress.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -177,6 +205,7 @@ export class RxUploadProgress extends SocketRxMessage<sfiles.UploadProgress> {
 export class TxUploadStart extends SocketTxMessage<sfiles.UploadStart> {
     static type: string = 'upload-start';
     proto: sfiles.UploadStart;
+    protoClass = sfiles.UploadStart;
     
 
     constructor(proto: sfiles.UploadStart) {
@@ -184,7 +213,7 @@ export class TxUploadStart extends SocketTxMessage<sfiles.UploadStart> {
         this.proto = proto;
     }
 
-    static create(properties: sfiles.IUploadStart) {
+    static create(properties: sfiles.IUploadStart = {}) {
         return new TxUploadStart(sfiles.UploadStart.create(properties));
     }
 }
@@ -192,11 +221,15 @@ export class TxUploadStart extends SocketTxMessage<sfiles.UploadStart> {
 
 export class RxUploadStartSlot extends SocketRxMessage<sfiles.UploadStartSlot> {
     static type: string = 'upload-start';
-    proto = new sfiles.UploadStartSlot();
+    proto = sfiles.UploadStartSlot.create({});
+    protoClass = sfiles.UploadStartSlot;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUploadStartSlot.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -207,11 +240,15 @@ export class RxUploadStartSlot extends SocketRxMessage<sfiles.UploadStartSlot> {
 
 export class RxAck extends SocketRxMessage<socket_api.Ack> {
     static type: string = 'ack';
-    proto = new socket_api.Ack();
+    proto = socket_api.Ack.create({});
+    protoClass = socket_api.Ack;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxAck.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -222,11 +259,15 @@ export class RxAck extends SocketRxMessage<socket_api.Ack> {
 
 export class RxAsyncProgress extends SocketRxMessage<socket_api.AsyncProgress> {
     static type: string = 'async-progress';
-    proto = new socket_api.AsyncProgress();
+    proto = socket_api.AsyncProgress.create({});
+    protoClass = socket_api.AsyncProgress;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxAsyncProgress.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -237,11 +278,15 @@ export class RxAsyncProgress extends SocketRxMessage<socket_api.AsyncProgress> {
 
 export class RxUpgradeApiVersion extends SocketRxMessage<socket_api.UpgradeApiVersion> {
     static type: string = 'upgrade-api-version';
-    proto = new socket_api.UpgradeApiVersion();
+    proto = socket_api.UpgradeApiVersion.create({});
+    protoClass = socket_api.UpgradeApiVersion;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUpgradeApiVersion.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -253,6 +298,7 @@ export class RxUpgradeApiVersion extends SocketRxMessage<socket_api.UpgradeApiVe
 export class TxDeleteUFile extends SocketTxMessage<uploader.DeleteUFile> {
     static type: string = 'delete-ufile';
     proto: uploader.DeleteUFile;
+    protoClass = uploader.DeleteUFile;
     
 
     constructor(proto: uploader.DeleteUFile) {
@@ -260,7 +306,7 @@ export class TxDeleteUFile extends SocketTxMessage<uploader.DeleteUFile> {
         this.proto = proto;
     }
 
-    static create(properties: uploader.IDeleteUFile) {
+    static create(properties: uploader.IDeleteUFile = {}) {
         return new TxDeleteUFile(uploader.DeleteUFile.create(properties));
     }
 }
@@ -268,11 +314,15 @@ export class TxDeleteUFile extends SocketTxMessage<uploader.DeleteUFile> {
 
 export class RxUploadSlot extends SocketRxMessage<uploader.UploadSlot> {
     static type: string = 'upload-slot';
-    proto = new uploader.UploadSlot();
+    proto = uploader.UploadSlot.create({});
+    protoClass = uploader.UploadSlot;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUploadSlot.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -283,11 +333,15 @@ export class RxUploadSlot extends SocketRxMessage<uploader.UploadSlot> {
 
 export class RxUploadTask extends SocketRxMessage<uploader.UploadTask> {
     static type: string = 'upload-task';
-    proto = new uploader.UploadTask();
+    proto = uploader.UploadTask.create({});
+    protoClass = uploader.UploadTask;
     
 
     constructor(message: SocketRxMessageData | null = null) {
         super(RxUploadTask.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
     }
 
     fromMessage(message: SocketRxMessageData) {
@@ -299,6 +353,7 @@ export class RxUploadTask extends SocketRxMessage<uploader.UploadTask> {
 export class TxUploadUFile extends SocketTxMessage<uploader.UploadUFile> {
     static type: string = 'upload-ufile';
     proto: uploader.UploadUFile;
+    protoClass = uploader.UploadUFile;
     
 
     constructor(proto: uploader.UploadUFile) {
@@ -306,7 +361,7 @@ export class TxUploadUFile extends SocketTxMessage<uploader.UploadUFile> {
         this.proto = proto;
     }
 
-    static create(properties: uploader.IUploadUFile) {
+    static create(properties: uploader.IUploadUFile = {}) {
         return new TxUploadUFile(uploader.UploadUFile.create(properties));
     }
 }
@@ -326,5 +381,4 @@ export const rxMessages: SocketRxMessage<any>[] = [
     new RxUploadSlot(),
     new RxUploadTask()
 ];
-
 }

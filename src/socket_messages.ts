@@ -1,4 +1,7 @@
-class SocketRxMessageData {
+import {Reader, Writer} from "protobufjs";
+import * as $protobuf from "protobufjs";
+
+export class SocketRxMessageData {
     private static keyHeaders = 'headers';
     private static keyBody = 'body';
     private static keyMessageType = 'messageType';
@@ -30,18 +33,18 @@ class SocketRxMessageData {
     _raw: string | null;
 
     // Tries to find the `messageType` attribute
-    get messageType() {
+    get messageType() : string {
         return this.data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyMessageType];
     }
 
     // Decoded JSON map.
-    data: Record<string, any>;
+    data: { [k: string]: any };
 
     get body() {
         return this.data[SocketRxMessageData.keyBody];
     }
 
-    constructor(raw = '{}', {cacheUuid = null as string | null, online = true} = {
+    constructor(raw: string, {cacheUuid = null as string | null, online = true} = {
         cacheUuid: null,
         online: true
     }) {
@@ -64,18 +67,16 @@ class SocketRxMessageData {
     }
 }
 
-interface SerializableMessage<Type> {
-    toJSON(): { [k: string]: any }
+export interface SerializableMessage<Type> {
+    toJSON(): { [k: string]: any };
 }
 
-interface SerializableMessageStatic<Type> {
-    new(...args: any[]): SerializableMessage<Type>;
-
-    fromObject(object: { [k: string]: any }): Type
+export interface SerializableMessageStatic<Type> {
+    encode(message: any, writer?: Writer): Writer;
+    decode(reader: Reader|Uint8Array, length?: number): Type;
 }
 
-
-abstract class SocketTxMessage<Type extends SerializableMessage<Type>> {
+export abstract class SocketTxMessage<Type extends SerializableMessage<Type>> {
     messageType: string;
 
     /// If set to `true`, SocketApi will attach the `authHeader`, if we are authenticated
@@ -84,6 +85,7 @@ abstract class SocketTxMessage<Type extends SerializableMessage<Type>> {
     /// If sending failed, cache the message for this duration and try to send it when reconnected.
     cacheMs: bigint | null;
     abstract proto: Type;
+    abstract protoClass: SerializableMessageStatic<Type>;
 
     protected constructor(messageType: string, authRequired = true) {
         this.messageType = messageType;
@@ -96,17 +98,18 @@ abstract class SocketTxMessage<Type extends SerializableMessage<Type>> {
     }
 }
 
-abstract class SocketRxMessage<Type extends SerializableMessage<Type>> {
+export abstract class SocketRxMessage<Type extends SerializableMessage<Type>> {
     /// Wraps the raw JSON data received from the server and holds
     /// some metadata (eg. whether message originates from cache or from server).
-    message: SocketRxMessageData;
+    message: SocketRxMessageData | null;
     messageType: string;
 
     /// Protobuf generated class that provides easier access to the data.
     abstract proto: Type;
+    abstract protoClass: SerializableMessageStatic<Type>;
 
     protected constructor(messageType: string, message: SocketRxMessageData | null) {
-        this.message = message || new SocketRxMessageData();
+        this.message = message;
         this.messageType = messageType;
     }
 
