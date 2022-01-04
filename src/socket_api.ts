@@ -35,7 +35,7 @@ export class SocketApi {
         );
     }
 
-    setAuth(token: string): void {
+    setAuth(token: string | null): void {
         if (this._token !== token) {
             this._token = token;
             this.authenticatedChanges.next(this.authenticated);

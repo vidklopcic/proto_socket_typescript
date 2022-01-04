@@ -1,5 +1,5 @@
-import {SerializableMessageStatic, SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
-import {authentication, form_errors, uploader, sfiles, socket_api} from "./compiled";
+import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
+import {socket_api, uploader, sfiles, form_errors, authentication} from "./compiled";
 
 export namespace proto {
 
