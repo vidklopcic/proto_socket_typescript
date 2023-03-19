@@ -7,1688 +7,6 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-export const authentication = $root.authentication = (() => {
-
-    /**
-     * Namespace authentication.
-     * @exports authentication
-     * @namespace
-     */
-    const authentication = {};
-
-    authentication.LoginToken = (function() {
-
-        /**
-         * Properties of a LoginToken.
-         * @memberof authentication
-         * @interface ILoginToken
-         * @property {string|null} [token] LoginToken token
-         */
-
-        /**
-         * Constructs a new LoginToken.
-         * @memberof authentication
-         * @classdesc Represents a LoginToken.
-         * @implements ILoginToken
-         * @constructor
-         * @param {authentication.ILoginToken=} [properties] Properties to set
-         */
-        function LoginToken(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * LoginToken token.
-         * @member {string} token
-         * @memberof authentication.LoginToken
-         * @instance
-         */
-        LoginToken.prototype.token = "";
-
-        /**
-         * Creates a new LoginToken instance using the specified properties.
-         * @function create
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {authentication.ILoginToken=} [properties] Properties to set
-         * @returns {authentication.LoginToken} LoginToken instance
-         */
-        LoginToken.create = function create(properties) {
-            return new LoginToken(properties);
-        };
-
-        /**
-         * Encodes the specified LoginToken message. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {authentication.ILoginToken} message LoginToken message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LoginToken.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified LoginToken message, length delimited. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {authentication.ILoginToken} message LoginToken message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LoginToken.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a LoginToken message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.LoginToken} LoginToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LoginToken.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.LoginToken();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.token = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a LoginToken message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.LoginToken} LoginToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LoginToken.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a LoginToken message.
-         * @function verify
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        LoginToken.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.token != null && message.hasOwnProperty("token"))
-                if (!$util.isString(message.token))
-                    return "token: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a LoginToken message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.LoginToken} LoginToken
-         */
-        LoginToken.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.LoginToken)
-                return object;
-            let message = new $root.authentication.LoginToken();
-            if (object.token != null)
-                message.token = String(object.token);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a LoginToken message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.LoginToken
-         * @static
-         * @param {authentication.LoginToken} message LoginToken
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        LoginToken.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.defaults)
-                object.token = "";
-            if (message.token != null && message.hasOwnProperty("token"))
-                object.token = message.token;
-            return object;
-        };
-
-        /**
-         * Converts this LoginToken to JSON.
-         * @function toJSON
-         * @memberof authentication.LoginToken
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        LoginToken.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return LoginToken;
-    })();
-
-    authentication.LoginError = (function() {
-
-        /**
-         * Properties of a LoginError.
-         * @memberof authentication
-         * @interface ILoginError
-         * @property {string|null} [errorText] LoginError errorText
-         * @property {string|null} [errorCode] LoginError errorCode
-         */
-
-        /**
-         * Constructs a new LoginError.
-         * @memberof authentication
-         * @classdesc Represents a LoginError.
-         * @implements ILoginError
-         * @constructor
-         * @param {authentication.ILoginError=} [properties] Properties to set
-         */
-        function LoginError(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * LoginError errorText.
-         * @member {string} errorText
-         * @memberof authentication.LoginError
-         * @instance
-         */
-        LoginError.prototype.errorText = "";
-
-        /**
-         * LoginError errorCode.
-         * @member {string} errorCode
-         * @memberof authentication.LoginError
-         * @instance
-         */
-        LoginError.prototype.errorCode = "";
-
-        /**
-         * Creates a new LoginError instance using the specified properties.
-         * @function create
-         * @memberof authentication.LoginError
-         * @static
-         * @param {authentication.ILoginError=} [properties] Properties to set
-         * @returns {authentication.LoginError} LoginError instance
-         */
-        LoginError.create = function create(properties) {
-            return new LoginError(properties);
-        };
-
-        /**
-         * Encodes the specified LoginError message. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.LoginError
-         * @static
-         * @param {authentication.ILoginError} message LoginError message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LoginError.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.errorText != null && Object.hasOwnProperty.call(message, "errorText"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.errorText);
-            if (message.errorCode != null && Object.hasOwnProperty.call(message, "errorCode"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.errorCode);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified LoginError message, length delimited. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.LoginError
-         * @static
-         * @param {authentication.ILoginError} message LoginError message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LoginError.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a LoginError message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.LoginError
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.LoginError} LoginError
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LoginError.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.LoginError();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.errorText = reader.string();
-                    break;
-                case 2:
-                    message.errorCode = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a LoginError message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.LoginError
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.LoginError} LoginError
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LoginError.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a LoginError message.
-         * @function verify
-         * @memberof authentication.LoginError
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        LoginError.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.errorText != null && message.hasOwnProperty("errorText"))
-                if (!$util.isString(message.errorText))
-                    return "errorText: string expected";
-            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
-                if (!$util.isString(message.errorCode))
-                    return "errorCode: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a LoginError message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.LoginError
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.LoginError} LoginError
-         */
-        LoginError.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.LoginError)
-                return object;
-            let message = new $root.authentication.LoginError();
-            if (object.errorText != null)
-                message.errorText = String(object.errorText);
-            if (object.errorCode != null)
-                message.errorCode = String(object.errorCode);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a LoginError message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.LoginError
-         * @static
-         * @param {authentication.LoginError} message LoginError
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        LoginError.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.defaults) {
-                object.errorText = "";
-                object.errorCode = "";
-            }
-            if (message.errorText != null && message.hasOwnProperty("errorText"))
-                object.errorText = message.errorText;
-            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
-                object.errorCode = message.errorCode;
-            return object;
-        };
-
-        /**
-         * Converts this LoginError to JSON.
-         * @function toJSON
-         * @memberof authentication.LoginError
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        LoginError.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return LoginError;
-    })();
-
-    authentication.Login = (function() {
-
-        /**
-         * Properties of a Login.
-         * @memberof authentication
-         * @interface ILogin
-         * @property {string|null} [username] Login username
-         * @property {string|null} [password] Login password
-         */
-
-        /**
-         * Constructs a new Login.
-         * @memberof authentication
-         * @classdesc Represents a Login.
-         * @implements ILogin
-         * @constructor
-         * @param {authentication.ILogin=} [properties] Properties to set
-         */
-        function Login(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Login username.
-         * @member {string} username
-         * @memberof authentication.Login
-         * @instance
-         */
-        Login.prototype.username = "";
-
-        /**
-         * Login password.
-         * @member {string} password
-         * @memberof authentication.Login
-         * @instance
-         */
-        Login.prototype.password = "";
-
-        /**
-         * Creates a new Login instance using the specified properties.
-         * @function create
-         * @memberof authentication.Login
-         * @static
-         * @param {authentication.ILogin=} [properties] Properties to set
-         * @returns {authentication.Login} Login instance
-         */
-        Login.create = function create(properties) {
-            return new Login(properties);
-        };
-
-        /**
-         * Encodes the specified Login message. Does not implicitly {@link authentication.Login.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.Login
-         * @static
-         * @param {authentication.ILogin} message Login message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Login.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
-            if (message.password != null && Object.hasOwnProperty.call(message, "password"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified Login message, length delimited. Does not implicitly {@link authentication.Login.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.Login
-         * @static
-         * @param {authentication.ILogin} message Login message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Login.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a Login message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.Login
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.Login} Login
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Login.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.Login();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.username = reader.string();
-                    break;
-                case 2:
-                    message.password = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a Login message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.Login
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.Login} Login
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Login.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a Login message.
-         * @function verify
-         * @memberof authentication.Login
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        Login.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.username != null && message.hasOwnProperty("username"))
-                if (!$util.isString(message.username))
-                    return "username: string expected";
-            if (message.password != null && message.hasOwnProperty("password"))
-                if (!$util.isString(message.password))
-                    return "password: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a Login message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.Login
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.Login} Login
-         */
-        Login.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.Login)
-                return object;
-            let message = new $root.authentication.Login();
-            if (object.username != null)
-                message.username = String(object.username);
-            if (object.password != null)
-                message.password = String(object.password);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a Login message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.Login
-         * @static
-         * @param {authentication.Login} message Login
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Login.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.defaults) {
-                object.username = "";
-                object.password = "";
-            }
-            if (message.username != null && message.hasOwnProperty("username"))
-                object.username = message.username;
-            if (message.password != null && message.hasOwnProperty("password"))
-                object.password = message.password;
-            return object;
-        };
-
-        /**
-         * Converts this Login to JSON.
-         * @function toJSON
-         * @memberof authentication.Login
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        Login.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return Login;
-    })();
-
-    authentication.AppleLogin = (function() {
-
-        /**
-         * Properties of an AppleLogin.
-         * @memberof authentication
-         * @interface IAppleLogin
-         * @property {string|null} [code] AppleLogin code
-         * @property {string|null} [firstName] AppleLogin firstName
-         * @property {string|null} [lastName] AppleLogin lastName
-         * @property {boolean|null} [useBundleId] AppleLogin useBundleId
-         * @property {string|null} [state] AppleLogin state
-         */
-
-        /**
-         * Constructs a new AppleLogin.
-         * @memberof authentication
-         * @classdesc Represents an AppleLogin.
-         * @implements IAppleLogin
-         * @constructor
-         * @param {authentication.IAppleLogin=} [properties] Properties to set
-         */
-        function AppleLogin(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * AppleLogin code.
-         * @member {string} code
-         * @memberof authentication.AppleLogin
-         * @instance
-         */
-        AppleLogin.prototype.code = "";
-
-        /**
-         * AppleLogin firstName.
-         * @member {string} firstName
-         * @memberof authentication.AppleLogin
-         * @instance
-         */
-        AppleLogin.prototype.firstName = "";
-
-        /**
-         * AppleLogin lastName.
-         * @member {string} lastName
-         * @memberof authentication.AppleLogin
-         * @instance
-         */
-        AppleLogin.prototype.lastName = "";
-
-        /**
-         * AppleLogin useBundleId.
-         * @member {boolean} useBundleId
-         * @memberof authentication.AppleLogin
-         * @instance
-         */
-        AppleLogin.prototype.useBundleId = false;
-
-        /**
-         * AppleLogin state.
-         * @member {string} state
-         * @memberof authentication.AppleLogin
-         * @instance
-         */
-        AppleLogin.prototype.state = "";
-
-        /**
-         * Creates a new AppleLogin instance using the specified properties.
-         * @function create
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {authentication.IAppleLogin=} [properties] Properties to set
-         * @returns {authentication.AppleLogin} AppleLogin instance
-         */
-        AppleLogin.create = function create(properties) {
-            return new AppleLogin(properties);
-        };
-
-        /**
-         * Encodes the specified AppleLogin message. Does not implicitly {@link authentication.AppleLogin.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {authentication.IAppleLogin} message AppleLogin message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        AppleLogin.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.code != null && Object.hasOwnProperty.call(message, "code"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.code);
-            if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
-                writer.uint32(/* id 2, wireType 2 =*/18).string(message.firstName);
-            if (message.lastName != null && Object.hasOwnProperty.call(message, "lastName"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.lastName);
-            if (message.useBundleId != null && Object.hasOwnProperty.call(message, "useBundleId"))
-                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.useBundleId);
-            if (message.state != null && Object.hasOwnProperty.call(message, "state"))
-                writer.uint32(/* id 5, wireType 2 =*/42).string(message.state);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified AppleLogin message, length delimited. Does not implicitly {@link authentication.AppleLogin.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {authentication.IAppleLogin} message AppleLogin message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        AppleLogin.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes an AppleLogin message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.AppleLogin} AppleLogin
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        AppleLogin.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.AppleLogin();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.code = reader.string();
-                    break;
-                case 2:
-                    message.firstName = reader.string();
-                    break;
-                case 3:
-                    message.lastName = reader.string();
-                    break;
-                case 4:
-                    message.useBundleId = reader.bool();
-                    break;
-                case 5:
-                    message.state = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes an AppleLogin message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.AppleLogin} AppleLogin
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        AppleLogin.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies an AppleLogin message.
-         * @function verify
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        AppleLogin.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.code != null && message.hasOwnProperty("code"))
-                if (!$util.isString(message.code))
-                    return "code: string expected";
-            if (message.firstName != null && message.hasOwnProperty("firstName"))
-                if (!$util.isString(message.firstName))
-                    return "firstName: string expected";
-            if (message.lastName != null && message.hasOwnProperty("lastName"))
-                if (!$util.isString(message.lastName))
-                    return "lastName: string expected";
-            if (message.useBundleId != null && message.hasOwnProperty("useBundleId"))
-                if (typeof message.useBundleId !== "boolean")
-                    return "useBundleId: boolean expected";
-            if (message.state != null && message.hasOwnProperty("state"))
-                if (!$util.isString(message.state))
-                    return "state: string expected";
-            return null;
-        };
-
-        /**
-         * Creates an AppleLogin message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.AppleLogin} AppleLogin
-         */
-        AppleLogin.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.AppleLogin)
-                return object;
-            let message = new $root.authentication.AppleLogin();
-            if (object.code != null)
-                message.code = String(object.code);
-            if (object.firstName != null)
-                message.firstName = String(object.firstName);
-            if (object.lastName != null)
-                message.lastName = String(object.lastName);
-            if (object.useBundleId != null)
-                message.useBundleId = Boolean(object.useBundleId);
-            if (object.state != null)
-                message.state = String(object.state);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from an AppleLogin message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.AppleLogin
-         * @static
-         * @param {authentication.AppleLogin} message AppleLogin
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        AppleLogin.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.defaults) {
-                object.code = "";
-                object.firstName = "";
-                object.lastName = "";
-                object.useBundleId = false;
-                object.state = "";
-            }
-            if (message.code != null && message.hasOwnProperty("code"))
-                object.code = message.code;
-            if (message.firstName != null && message.hasOwnProperty("firstName"))
-                object.firstName = message.firstName;
-            if (message.lastName != null && message.hasOwnProperty("lastName"))
-                object.lastName = message.lastName;
-            if (message.useBundleId != null && message.hasOwnProperty("useBundleId"))
-                object.useBundleId = message.useBundleId;
-            if (message.state != null && message.hasOwnProperty("state"))
-                object.state = message.state;
-            return object;
-        };
-
-        /**
-         * Converts this AppleLogin to JSON.
-         * @function toJSON
-         * @memberof authentication.AppleLogin
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        AppleLogin.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return AppleLogin;
-    })();
-
-    authentication.VerifyToken = (function() {
-
-        /**
-         * Properties of a VerifyToken.
-         * @memberof authentication
-         * @interface IVerifyToken
-         */
-
-        /**
-         * Constructs a new VerifyToken.
-         * @memberof authentication
-         * @classdesc Represents a VerifyToken.
-         * @implements IVerifyToken
-         * @constructor
-         * @param {authentication.IVerifyToken=} [properties] Properties to set
-         */
-        function VerifyToken(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Creates a new VerifyToken instance using the specified properties.
-         * @function create
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {authentication.IVerifyToken=} [properties] Properties to set
-         * @returns {authentication.VerifyToken} VerifyToken instance
-         */
-        VerifyToken.create = function create(properties) {
-            return new VerifyToken(properties);
-        };
-
-        /**
-         * Encodes the specified VerifyToken message. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {authentication.IVerifyToken} message VerifyToken message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VerifyToken.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified VerifyToken message, length delimited. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {authentication.IVerifyToken} message VerifyToken message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        VerifyToken.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a VerifyToken message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.VerifyToken} VerifyToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VerifyToken.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.VerifyToken();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a VerifyToken message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.VerifyToken} VerifyToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        VerifyToken.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a VerifyToken message.
-         * @function verify
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        VerifyToken.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            return null;
-        };
-
-        /**
-         * Creates a VerifyToken message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.VerifyToken} VerifyToken
-         */
-        VerifyToken.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.VerifyToken)
-                return object;
-            return new $root.authentication.VerifyToken();
-        };
-
-        /**
-         * Creates a plain object from a VerifyToken message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.VerifyToken
-         * @static
-         * @param {authentication.VerifyToken} message VerifyToken
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        VerifyToken.toObject = function toObject() {
-            return {};
-        };
-
-        /**
-         * Converts this VerifyToken to JSON.
-         * @function toJSON
-         * @memberof authentication.VerifyToken
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        VerifyToken.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return VerifyToken;
-    })();
-
-    authentication.TokenInvalid = (function() {
-
-        /**
-         * Properties of a TokenInvalid.
-         * @memberof authentication
-         * @interface ITokenInvalid
-         */
-
-        /**
-         * Constructs a new TokenInvalid.
-         * @memberof authentication
-         * @classdesc Represents a TokenInvalid.
-         * @implements ITokenInvalid
-         * @constructor
-         * @param {authentication.ITokenInvalid=} [properties] Properties to set
-         */
-        function TokenInvalid(properties) {
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Creates a new TokenInvalid instance using the specified properties.
-         * @function create
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {authentication.ITokenInvalid=} [properties] Properties to set
-         * @returns {authentication.TokenInvalid} TokenInvalid instance
-         */
-        TokenInvalid.create = function create(properties) {
-            return new TokenInvalid(properties);
-        };
-
-        /**
-         * Encodes the specified TokenInvalid message. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
-         * @function encode
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {authentication.ITokenInvalid} message TokenInvalid message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TokenInvalid.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified TokenInvalid message, length delimited. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {authentication.ITokenInvalid} message TokenInvalid message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        TokenInvalid.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a TokenInvalid message from the specified reader or buffer.
-         * @function decode
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {authentication.TokenInvalid} TokenInvalid
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TokenInvalid.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.TokenInvalid();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a TokenInvalid message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {authentication.TokenInvalid} TokenInvalid
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        TokenInvalid.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a TokenInvalid message.
-         * @function verify
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        TokenInvalid.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            return null;
-        };
-
-        /**
-         * Creates a TokenInvalid message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {authentication.TokenInvalid} TokenInvalid
-         */
-        TokenInvalid.fromObject = function fromObject(object) {
-            if (object instanceof $root.authentication.TokenInvalid)
-                return object;
-            return new $root.authentication.TokenInvalid();
-        };
-
-        /**
-         * Creates a plain object from a TokenInvalid message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof authentication.TokenInvalid
-         * @static
-         * @param {authentication.TokenInvalid} message TokenInvalid
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        TokenInvalid.toObject = function toObject() {
-            return {};
-        };
-
-        /**
-         * Converts this TokenInvalid to JSON.
-         * @function toJSON
-         * @memberof authentication.TokenInvalid
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        TokenInvalid.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return TokenInvalid;
-    })();
-
-    return authentication;
-})();
-
-export const form_errors = $root.form_errors = (() => {
-
-    /**
-     * Namespace form_errors.
-     * @exports form_errors
-     * @namespace
-     */
-    const form_errors = {};
-
-    form_errors.FormErrors = (function() {
-
-        /**
-         * Properties of a FormErrors.
-         * @memberof form_errors
-         * @interface IFormErrors
-         * @property {string|null} [relatedMessageType] FormErrors relatedMessageType
-         * @property {Object.<string,form_errors.ISList>|null} [errors] FormErrors errors
-         */
-
-        /**
-         * Constructs a new FormErrors.
-         * @memberof form_errors
-         * @classdesc Represents a FormErrors.
-         * @implements IFormErrors
-         * @constructor
-         * @param {form_errors.IFormErrors=} [properties] Properties to set
-         */
-        function FormErrors(properties) {
-            this.errors = {};
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * FormErrors relatedMessageType.
-         * @member {string} relatedMessageType
-         * @memberof form_errors.FormErrors
-         * @instance
-         */
-        FormErrors.prototype.relatedMessageType = "";
-
-        /**
-         * FormErrors errors.
-         * @member {Object.<string,form_errors.ISList>} errors
-         * @memberof form_errors.FormErrors
-         * @instance
-         */
-        FormErrors.prototype.errors = $util.emptyObject;
-
-        /**
-         * Creates a new FormErrors instance using the specified properties.
-         * @function create
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {form_errors.IFormErrors=} [properties] Properties to set
-         * @returns {form_errors.FormErrors} FormErrors instance
-         */
-        FormErrors.create = function create(properties) {
-            return new FormErrors(properties);
-        };
-
-        /**
-         * Encodes the specified FormErrors message. Does not implicitly {@link form_errors.FormErrors.verify|verify} messages.
-         * @function encode
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {form_errors.IFormErrors} message FormErrors message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FormErrors.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.relatedMessageType != null && Object.hasOwnProperty.call(message, "relatedMessageType"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.relatedMessageType);
-            if (message.errors != null && Object.hasOwnProperty.call(message, "errors"))
-                for (let keys = Object.keys(message.errors), i = 0; i < keys.length; ++i) {
-                    writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                    $root.form_errors.SList.encode(message.errors[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
-                }
-            return writer;
-        };
-
-        /**
-         * Encodes the specified FormErrors message, length delimited. Does not implicitly {@link form_errors.FormErrors.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {form_errors.IFormErrors} message FormErrors message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        FormErrors.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a FormErrors message from the specified reader or buffer.
-         * @function decode
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {form_errors.FormErrors} FormErrors
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FormErrors.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_errors.FormErrors(), key, value;
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.relatedMessageType = reader.string();
-                    break;
-                case 2:
-                    if (message.errors === $util.emptyObject)
-                        message.errors = {};
-                    let end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = null;
-                    while (reader.pos < end2) {
-                        let tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = $root.form_errors.SList.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
-                        }
-                    }
-                    message.errors[key] = value;
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a FormErrors message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {form_errors.FormErrors} FormErrors
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        FormErrors.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a FormErrors message.
-         * @function verify
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        FormErrors.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.relatedMessageType != null && message.hasOwnProperty("relatedMessageType"))
-                if (!$util.isString(message.relatedMessageType))
-                    return "relatedMessageType: string expected";
-            if (message.errors != null && message.hasOwnProperty("errors")) {
-                if (!$util.isObject(message.errors))
-                    return "errors: object expected";
-                let key = Object.keys(message.errors);
-                for (let i = 0; i < key.length; ++i) {
-                    let error = $root.form_errors.SList.verify(message.errors[key[i]]);
-                    if (error)
-                        return "errors." + error;
-                }
-            }
-            return null;
-        };
-
-        /**
-         * Creates a FormErrors message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {form_errors.FormErrors} FormErrors
-         */
-        FormErrors.fromObject = function fromObject(object) {
-            if (object instanceof $root.form_errors.FormErrors)
-                return object;
-            let message = new $root.form_errors.FormErrors();
-            if (object.relatedMessageType != null)
-                message.relatedMessageType = String(object.relatedMessageType);
-            if (object.errors) {
-                if (typeof object.errors !== "object")
-                    throw TypeError(".form_errors.FormErrors.errors: object expected");
-                message.errors = {};
-                for (let keys = Object.keys(object.errors), i = 0; i < keys.length; ++i) {
-                    if (typeof object.errors[keys[i]] !== "object")
-                        throw TypeError(".form_errors.FormErrors.errors: object expected");
-                    message.errors[keys[i]] = $root.form_errors.SList.fromObject(object.errors[keys[i]]);
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a FormErrors message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof form_errors.FormErrors
-         * @static
-         * @param {form_errors.FormErrors} message FormErrors
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        FormErrors.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.objects || options.defaults)
-                object.errors = {};
-            if (options.defaults)
-                object.relatedMessageType = "";
-            if (message.relatedMessageType != null && message.hasOwnProperty("relatedMessageType"))
-                object.relatedMessageType = message.relatedMessageType;
-            let keys2;
-            if (message.errors && (keys2 = Object.keys(message.errors)).length) {
-                object.errors = {};
-                for (let j = 0; j < keys2.length; ++j)
-                    object.errors[keys2[j]] = $root.form_errors.SList.toObject(message.errors[keys2[j]], options);
-            }
-            return object;
-        };
-
-        /**
-         * Converts this FormErrors to JSON.
-         * @function toJSON
-         * @memberof form_errors.FormErrors
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        FormErrors.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return FormErrors;
-    })();
-
-    form_errors.SList = (function() {
-
-        /**
-         * Properties of a SList.
-         * @memberof form_errors
-         * @interface ISList
-         * @property {Array.<string>|null} [list] SList list
-         */
-
-        /**
-         * Constructs a new SList.
-         * @memberof form_errors
-         * @classdesc Represents a SList.
-         * @implements ISList
-         * @constructor
-         * @param {form_errors.ISList=} [properties] Properties to set
-         */
-        function SList(properties) {
-            this.list = [];
-            if (properties)
-                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * SList list.
-         * @member {Array.<string>} list
-         * @memberof form_errors.SList
-         * @instance
-         */
-        SList.prototype.list = $util.emptyArray;
-
-        /**
-         * Creates a new SList instance using the specified properties.
-         * @function create
-         * @memberof form_errors.SList
-         * @static
-         * @param {form_errors.ISList=} [properties] Properties to set
-         * @returns {form_errors.SList} SList instance
-         */
-        SList.create = function create(properties) {
-            return new SList(properties);
-        };
-
-        /**
-         * Encodes the specified SList message. Does not implicitly {@link form_errors.SList.verify|verify} messages.
-         * @function encode
-         * @memberof form_errors.SList
-         * @static
-         * @param {form_errors.ISList} message SList message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        SList.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.list != null && message.list.length)
-                for (let i = 0; i < message.list.length; ++i)
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.list[i]);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified SList message, length delimited. Does not implicitly {@link form_errors.SList.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof form_errors.SList
-         * @static
-         * @param {form_errors.ISList} message SList message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        SList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a SList message from the specified reader or buffer.
-         * @function decode
-         * @memberof form_errors.SList
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {form_errors.SList} SList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        SList.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_errors.SList();
-            while (reader.pos < end) {
-                let tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    if (!(message.list && message.list.length))
-                        message.list = [];
-                    message.list.push(reader.string());
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a SList message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof form_errors.SList
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {form_errors.SList} SList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        SList.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a SList message.
-         * @function verify
-         * @memberof form_errors.SList
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        SList.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.list != null && message.hasOwnProperty("list")) {
-                if (!Array.isArray(message.list))
-                    return "list: array expected";
-                for (let i = 0; i < message.list.length; ++i)
-                    if (!$util.isString(message.list[i]))
-                        return "list: string[] expected";
-            }
-            return null;
-        };
-
-        /**
-         * Creates a SList message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof form_errors.SList
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {form_errors.SList} SList
-         */
-        SList.fromObject = function fromObject(object) {
-            if (object instanceof $root.form_errors.SList)
-                return object;
-            let message = new $root.form_errors.SList();
-            if (object.list) {
-                if (!Array.isArray(object.list))
-                    throw TypeError(".form_errors.SList.list: array expected");
-                message.list = [];
-                for (let i = 0; i < object.list.length; ++i)
-                    message.list[i] = String(object.list[i]);
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a SList message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof form_errors.SList
-         * @static
-         * @param {form_errors.SList} message SList
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        SList.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            let object = {};
-            if (options.arrays || options.defaults)
-                object.list = [];
-            if (message.list && message.list.length) {
-                object.list = [];
-                for (let j = 0; j < message.list.length; ++j)
-                    object.list[j] = message.list[j];
-            }
-            return object;
-        };
-
-        /**
-         * Converts this SList to JSON.
-         * @function toJSON
-         * @memberof form_errors.SList
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        SList.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return SList;
-    })();
-
-    return form_errors;
-})();
-
 export const sfiles = $root.sfiles = (() => {
 
     /**
@@ -1801,12 +119,14 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.key = reader.string();
-                    break;
-                case 2:
-                    message.localKey = reader.string();
-                    break;
+                case 1: {
+                        message.key = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.localKey = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1903,6 +223,21 @@ export const sfiles = $root.sfiles = (() => {
          */
         UploadStartSlot.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadStartSlot
+         * @function getTypeUrl
+         * @memberof sfiles.UploadStartSlot
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadStartSlot.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadStartSlot";
         };
 
         return UploadStartSlot;
@@ -2022,15 +357,18 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.nBytes = reader.int64();
-                    break;
-                case 2:
-                    message.key = reader.string();
-                    break;
-                case 3:
-                    message.localKey = reader.string();
-                    break;
+                case 1: {
+                        message.nBytes = reader.int64();
+                        break;
+                    }
+                case 2: {
+                        message.key = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.localKey = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2151,6 +489,21 @@ export const sfiles = $root.sfiles = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UploadProgress
+         * @function getTypeUrl
+         * @memberof sfiles.UploadProgress
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadProgress.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadProgress";
+        };
+
         return UploadProgress;
     })();
 
@@ -2257,12 +610,14 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.key = reader.string();
-                    break;
-                case 2:
-                    message.file = $root.sfiles.UploadedFile.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.key = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.file = $root.sfiles.UploadedFile.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2366,6 +721,21 @@ export const sfiles = $root.sfiles = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UploadDone
+         * @function getTypeUrl
+         * @memberof sfiles.UploadDone
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadDone.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadDone";
+        };
+
         return UploadDone;
     })();
 
@@ -2381,7 +751,6 @@ export const sfiles = $root.sfiles = (() => {
          * @property {string|null} [mime] UploadedFile mime
          * @property {string|null} [thumbUrl] UploadedFile thumbUrl
          * @property {string|null} [name] UploadedFile name
-         * @property {boolean|null} [downloadable] UploadedFile downloadable
          */
 
         /**
@@ -2448,14 +817,6 @@ export const sfiles = $root.sfiles = (() => {
         UploadedFile.prototype.name = "";
 
         /**
-         * UploadedFile downloadable.
-         * @member {boolean} downloadable
-         * @memberof sfiles.UploadedFile
-         * @instance
-         */
-        UploadedFile.prototype.downloadable = false;
-
-        /**
          * Creates a new UploadedFile instance using the specified properties.
          * @function create
          * @memberof sfiles.UploadedFile
@@ -2491,8 +852,6 @@ export const sfiles = $root.sfiles = (() => {
                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.thumbUrl);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.name);
-            if (message.downloadable != null && Object.hasOwnProperty.call(message, "downloadable"))
-                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.downloadable);
             return writer;
         };
 
@@ -2527,27 +886,30 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.localKey = reader.string();
-                    break;
-                case 2:
-                    message.url = reader.string();
-                    break;
-                case 3:
-                    message.id = reader.string();
-                    break;
-                case 4:
-                    message.mime = reader.string();
-                    break;
-                case 5:
-                    message.thumbUrl = reader.string();
-                    break;
-                case 6:
-                    message.name = reader.string();
-                    break;
-                case 7:
-                    message.downloadable = reader.bool();
-                    break;
+                case 1: {
+                        message.localKey = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.url = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.mime = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.thumbUrl = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.name = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2601,9 +963,6 @@ export const sfiles = $root.sfiles = (() => {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
-            if (message.downloadable != null && message.hasOwnProperty("downloadable"))
-                if (typeof message.downloadable !== "boolean")
-                    return "downloadable: boolean expected";
             return null;
         };
 
@@ -2631,8 +990,6 @@ export const sfiles = $root.sfiles = (() => {
                 message.thumbUrl = String(object.thumbUrl);
             if (object.name != null)
                 message.name = String(object.name);
-            if (object.downloadable != null)
-                message.downloadable = Boolean(object.downloadable);
             return message;
         };
 
@@ -2656,7 +1013,6 @@ export const sfiles = $root.sfiles = (() => {
                 object.mime = "";
                 object.thumbUrl = "";
                 object.name = "";
-                object.downloadable = false;
             }
             if (message.localKey != null && message.hasOwnProperty("localKey"))
                 object.localKey = message.localKey;
@@ -2670,8 +1026,6 @@ export const sfiles = $root.sfiles = (() => {
                 object.thumbUrl = message.thumbUrl;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
-            if (message.downloadable != null && message.hasOwnProperty("downloadable"))
-                object.downloadable = message.downloadable;
             return object;
         };
 
@@ -2684,6 +1038,21 @@ export const sfiles = $root.sfiles = (() => {
          */
         UploadedFile.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadedFile
+         * @function getTypeUrl
+         * @memberof sfiles.UploadedFile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadedFile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadedFile";
         };
 
         return UploadedFile;
@@ -2814,18 +1183,22 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.localKey = reader.string();
-                    break;
-                case 2:
-                    message.extension = reader.string();
-                    break;
-                case 3:
-                    message.name = reader.string();
-                    break;
-                case 4:
-                    message.mime = reader.string();
-                    break;
+                case 1: {
+                        message.localKey = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.extension = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.mime = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2940,6 +1313,21 @@ export const sfiles = $root.sfiles = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UploadStart
+         * @function getTypeUrl
+         * @memberof sfiles.UploadStart
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadStart.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadStart";
+        };
+
         return UploadStart;
     })();
 
@@ -3035,9 +1423,10 @@ export const sfiles = $root.sfiles = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.file = $root.sfiles.UploadedFile.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.file = $root.sfiles.UploadedFile.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3130,6 +1519,21 @@ export const sfiles = $root.sfiles = (() => {
          */
         DeleteFile.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DeleteFile
+         * @function getTypeUrl
+         * @memberof sfiles.DeleteFile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DeleteFile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.DeleteFile";
         };
 
         return DeleteFile;
@@ -3292,6 +1696,21 @@ export const sfiles = $root.sfiles = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UploadEnd
+         * @function getTypeUrl
+         * @memberof sfiles.UploadEnd
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadEnd.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/sfiles.UploadEnd";
+        };
+
         return UploadEnd;
     })();
 
@@ -3316,6 +1735,7 @@ export const socket_api = $root.socket_api = (() => {
          * @property {string|null} [uuid] Ack uuid
          * @property {string|null} [errorMessage] Ack errorMessage
          * @property {string|null} [asyncProgressKey] Ack asyncProgressKey
+         * @property {number|null} [errorCode] Ack errorCode
          */
 
         /**
@@ -3358,6 +1778,14 @@ export const socket_api = $root.socket_api = (() => {
         Ack.prototype.asyncProgressKey = "";
 
         /**
+         * Ack errorCode.
+         * @member {number} errorCode
+         * @memberof socket_api.Ack
+         * @instance
+         */
+        Ack.prototype.errorCode = 0;
+
+        /**
          * Creates a new Ack instance using the specified properties.
          * @function create
          * @memberof socket_api.Ack
@@ -3387,6 +1815,8 @@ export const socket_api = $root.socket_api = (() => {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.errorMessage);
             if (message.asyncProgressKey != null && Object.hasOwnProperty.call(message, "asyncProgressKey"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.asyncProgressKey);
+            if (message.errorCode != null && Object.hasOwnProperty.call(message, "errorCode"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.errorCode);
             return writer;
         };
 
@@ -3421,15 +1851,22 @@ export const socket_api = $root.socket_api = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.uuid = reader.string();
-                    break;
-                case 2:
-                    message.errorMessage = reader.string();
-                    break;
-                case 3:
-                    message.asyncProgressKey = reader.string();
-                    break;
+                case 1: {
+                        message.uuid = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.errorMessage = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.asyncProgressKey = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.errorCode = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3474,6 +1911,9 @@ export const socket_api = $root.socket_api = (() => {
             if (message.asyncProgressKey != null && message.hasOwnProperty("asyncProgressKey"))
                 if (!$util.isString(message.asyncProgressKey))
                     return "asyncProgressKey: string expected";
+            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
+                if (!$util.isInteger(message.errorCode))
+                    return "errorCode: integer expected";
             return null;
         };
 
@@ -3495,6 +1935,8 @@ export const socket_api = $root.socket_api = (() => {
                 message.errorMessage = String(object.errorMessage);
             if (object.asyncProgressKey != null)
                 message.asyncProgressKey = String(object.asyncProgressKey);
+            if (object.errorCode != null)
+                message.errorCode = object.errorCode | 0;
             return message;
         };
 
@@ -3515,6 +1957,7 @@ export const socket_api = $root.socket_api = (() => {
                 object.uuid = "";
                 object.errorMessage = "";
                 object.asyncProgressKey = "";
+                object.errorCode = 0;
             }
             if (message.uuid != null && message.hasOwnProperty("uuid"))
                 object.uuid = message.uuid;
@@ -3522,6 +1965,8 @@ export const socket_api = $root.socket_api = (() => {
                 object.errorMessage = message.errorMessage;
             if (message.asyncProgressKey != null && message.hasOwnProperty("asyncProgressKey"))
                 object.asyncProgressKey = message.asyncProgressKey;
+            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
+                object.errorCode = message.errorCode;
             return object;
         };
 
@@ -3534,6 +1979,21 @@ export const socket_api = $root.socket_api = (() => {
          */
         Ack.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Ack
+         * @function getTypeUrl
+         * @memberof socket_api.Ack
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Ack.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/socket_api.Ack";
         };
 
         return Ack;
@@ -3675,21 +2135,26 @@ export const socket_api = $root.socket_api = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.key = reader.string();
-                    break;
-                case 2:
-                    message.progress = reader.double();
-                    break;
-                case 3:
-                    message.info = reader.string();
-                    break;
-                case 4:
-                    message.done = reader.bool();
-                    break;
-                case 5:
-                    message.errorMessage = reader.string();
-                    break;
+                case 1: {
+                        message.key = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.progress = reader.double();
+                        break;
+                    }
+                case 3: {
+                        message.info = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.done = reader.bool();
+                        break;
+                    }
+                case 5: {
+                        message.errorMessage = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3812,6 +2277,21 @@ export const socket_api = $root.socket_api = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for AsyncProgress
+         * @function getTypeUrl
+         * @memberof socket_api.AsyncProgress
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AsyncProgress.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/socket_api.AsyncProgress";
+        };
+
         return AsyncProgress;
     })();
 
@@ -3907,9 +2387,10 @@ export const socket_api = $root.socket_api = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.latest = reader.int32();
-                    break;
+                case 1: {
+                        message.latest = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3999,10 +2480,1271 @@ export const socket_api = $root.socket_api = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UpgradeApiVersion
+         * @function getTypeUrl
+         * @memberof socket_api.UpgradeApiVersion
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UpgradeApiVersion.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/socket_api.UpgradeApiVersion";
+        };
+
         return UpgradeApiVersion;
     })();
 
     return socket_api;
+})();
+
+export const authentication = $root.authentication = (() => {
+
+    /**
+     * Namespace authentication.
+     * @exports authentication
+     * @namespace
+     */
+    const authentication = {};
+
+    authentication.LoginToken = (function() {
+
+        /**
+         * Properties of a LoginToken.
+         * @memberof authentication
+         * @interface ILoginToken
+         * @property {string|null} [token] LoginToken token
+         * @property {string|null} [refresh] LoginToken refresh
+         */
+
+        /**
+         * Constructs a new LoginToken.
+         * @memberof authentication
+         * @classdesc Represents a LoginToken.
+         * @implements ILoginToken
+         * @constructor
+         * @param {authentication.ILoginToken=} [properties] Properties to set
+         */
+        function LoginToken(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LoginToken token.
+         * @member {string} token
+         * @memberof authentication.LoginToken
+         * @instance
+         */
+        LoginToken.prototype.token = "";
+
+        /**
+         * LoginToken refresh.
+         * @member {string} refresh
+         * @memberof authentication.LoginToken
+         * @instance
+         */
+        LoginToken.prototype.refresh = "";
+
+        /**
+         * Creates a new LoginToken instance using the specified properties.
+         * @function create
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {authentication.ILoginToken=} [properties] Properties to set
+         * @returns {authentication.LoginToken} LoginToken instance
+         */
+        LoginToken.create = function create(properties) {
+            return new LoginToken(properties);
+        };
+
+        /**
+         * Encodes the specified LoginToken message. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {authentication.ILoginToken} message LoginToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginToken.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            if (message.refresh != null && Object.hasOwnProperty.call(message, "refresh"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.refresh);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LoginToken message, length delimited. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {authentication.ILoginToken} message LoginToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginToken.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LoginToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.LoginToken} LoginToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginToken.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.LoginToken();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.token = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.refresh = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LoginToken message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.LoginToken} LoginToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginToken.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LoginToken message.
+         * @function verify
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LoginToken.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            if (message.refresh != null && message.hasOwnProperty("refresh"))
+                if (!$util.isString(message.refresh))
+                    return "refresh: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LoginToken message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.LoginToken} LoginToken
+         */
+        LoginToken.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.LoginToken)
+                return object;
+            let message = new $root.authentication.LoginToken();
+            if (object.token != null)
+                message.token = String(object.token);
+            if (object.refresh != null)
+                message.refresh = String(object.refresh);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LoginToken message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {authentication.LoginToken} message LoginToken
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LoginToken.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.token = "";
+                object.refresh = "";
+            }
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            if (message.refresh != null && message.hasOwnProperty("refresh"))
+                object.refresh = message.refresh;
+            return object;
+        };
+
+        /**
+         * Converts this LoginToken to JSON.
+         * @function toJSON
+         * @memberof authentication.LoginToken
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LoginToken.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LoginToken
+         * @function getTypeUrl
+         * @memberof authentication.LoginToken
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LoginToken.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.LoginToken";
+        };
+
+        return LoginToken;
+    })();
+
+    authentication.LoginError = (function() {
+
+        /**
+         * Properties of a LoginError.
+         * @memberof authentication
+         * @interface ILoginError
+         * @property {string|null} [errorText] LoginError errorText
+         * @property {string|null} [errorCode] LoginError errorCode
+         */
+
+        /**
+         * Constructs a new LoginError.
+         * @memberof authentication
+         * @classdesc Represents a LoginError.
+         * @implements ILoginError
+         * @constructor
+         * @param {authentication.ILoginError=} [properties] Properties to set
+         */
+        function LoginError(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LoginError errorText.
+         * @member {string} errorText
+         * @memberof authentication.LoginError
+         * @instance
+         */
+        LoginError.prototype.errorText = "";
+
+        /**
+         * LoginError errorCode.
+         * @member {string} errorCode
+         * @memberof authentication.LoginError
+         * @instance
+         */
+        LoginError.prototype.errorCode = "";
+
+        /**
+         * Creates a new LoginError instance using the specified properties.
+         * @function create
+         * @memberof authentication.LoginError
+         * @static
+         * @param {authentication.ILoginError=} [properties] Properties to set
+         * @returns {authentication.LoginError} LoginError instance
+         */
+        LoginError.create = function create(properties) {
+            return new LoginError(properties);
+        };
+
+        /**
+         * Encodes the specified LoginError message. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.LoginError
+         * @static
+         * @param {authentication.ILoginError} message LoginError message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginError.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.errorText != null && Object.hasOwnProperty.call(message, "errorText"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.errorText);
+            if (message.errorCode != null && Object.hasOwnProperty.call(message, "errorCode"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.errorCode);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LoginError message, length delimited. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.LoginError
+         * @static
+         * @param {authentication.ILoginError} message LoginError message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LoginError.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LoginError message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.LoginError
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.LoginError} LoginError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginError.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.LoginError();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.errorText = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.errorCode = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LoginError message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.LoginError
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.LoginError} LoginError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LoginError.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LoginError message.
+         * @function verify
+         * @memberof authentication.LoginError
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LoginError.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.errorText != null && message.hasOwnProperty("errorText"))
+                if (!$util.isString(message.errorText))
+                    return "errorText: string expected";
+            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
+                if (!$util.isString(message.errorCode))
+                    return "errorCode: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a LoginError message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.LoginError
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.LoginError} LoginError
+         */
+        LoginError.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.LoginError)
+                return object;
+            let message = new $root.authentication.LoginError();
+            if (object.errorText != null)
+                message.errorText = String(object.errorText);
+            if (object.errorCode != null)
+                message.errorCode = String(object.errorCode);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LoginError message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.LoginError
+         * @static
+         * @param {authentication.LoginError} message LoginError
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LoginError.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.errorText = "";
+                object.errorCode = "";
+            }
+            if (message.errorText != null && message.hasOwnProperty("errorText"))
+                object.errorText = message.errorText;
+            if (message.errorCode != null && message.hasOwnProperty("errorCode"))
+                object.errorCode = message.errorCode;
+            return object;
+        };
+
+        /**
+         * Converts this LoginError to JSON.
+         * @function toJSON
+         * @memberof authentication.LoginError
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LoginError.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LoginError
+         * @function getTypeUrl
+         * @memberof authentication.LoginError
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LoginError.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.LoginError";
+        };
+
+        return LoginError;
+    })();
+
+    authentication.Login = (function() {
+
+        /**
+         * Properties of a Login.
+         * @memberof authentication
+         * @interface ILogin
+         * @property {string|null} [username] Login username
+         * @property {string|null} [password] Login password
+         */
+
+        /**
+         * Constructs a new Login.
+         * @memberof authentication
+         * @classdesc Represents a Login.
+         * @implements ILogin
+         * @constructor
+         * @param {authentication.ILogin=} [properties] Properties to set
+         */
+        function Login(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Login username.
+         * @member {string} username
+         * @memberof authentication.Login
+         * @instance
+         */
+        Login.prototype.username = "";
+
+        /**
+         * Login password.
+         * @member {string} password
+         * @memberof authentication.Login
+         * @instance
+         */
+        Login.prototype.password = "";
+
+        /**
+         * Creates a new Login instance using the specified properties.
+         * @function create
+         * @memberof authentication.Login
+         * @static
+         * @param {authentication.ILogin=} [properties] Properties to set
+         * @returns {authentication.Login} Login instance
+         */
+        Login.create = function create(properties) {
+            return new Login(properties);
+        };
+
+        /**
+         * Encodes the specified Login message. Does not implicitly {@link authentication.Login.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.Login
+         * @static
+         * @param {authentication.ILogin} message Login message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Login.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+            if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.password);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Login message, length delimited. Does not implicitly {@link authentication.Login.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.Login
+         * @static
+         * @param {authentication.ILogin} message Login message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Login.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a Login message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.Login
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.Login} Login
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Login.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.Login();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.username = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.password = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a Login message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.Login
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.Login} Login
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Login.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a Login message.
+         * @function verify
+         * @memberof authentication.Login
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Login.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.username != null && message.hasOwnProperty("username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.password != null && message.hasOwnProperty("password"))
+                if (!$util.isString(message.password))
+                    return "password: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a Login message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.Login
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.Login} Login
+         */
+        Login.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.Login)
+                return object;
+            let message = new $root.authentication.Login();
+            if (object.username != null)
+                message.username = String(object.username);
+            if (object.password != null)
+                message.password = String(object.password);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Login message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.Login
+         * @static
+         * @param {authentication.Login} message Login
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Login.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.username = "";
+                object.password = "";
+            }
+            if (message.username != null && message.hasOwnProperty("username"))
+                object.username = message.username;
+            if (message.password != null && message.hasOwnProperty("password"))
+                object.password = message.password;
+            return object;
+        };
+
+        /**
+         * Converts this Login to JSON.
+         * @function toJSON
+         * @memberof authentication.Login
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Login.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Login
+         * @function getTypeUrl
+         * @memberof authentication.Login
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Login.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.Login";
+        };
+
+        return Login;
+    })();
+
+    authentication.RefreshToken = (function() {
+
+        /**
+         * Properties of a RefreshToken.
+         * @memberof authentication
+         * @interface IRefreshToken
+         * @property {string|null} [refreshToken] RefreshToken refreshToken
+         */
+
+        /**
+         * Constructs a new RefreshToken.
+         * @memberof authentication
+         * @classdesc Represents a RefreshToken.
+         * @implements IRefreshToken
+         * @constructor
+         * @param {authentication.IRefreshToken=} [properties] Properties to set
+         */
+        function RefreshToken(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RefreshToken refreshToken.
+         * @member {string} refreshToken
+         * @memberof authentication.RefreshToken
+         * @instance
+         */
+        RefreshToken.prototype.refreshToken = "";
+
+        /**
+         * Creates a new RefreshToken instance using the specified properties.
+         * @function create
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {authentication.IRefreshToken=} [properties] Properties to set
+         * @returns {authentication.RefreshToken} RefreshToken instance
+         */
+        RefreshToken.create = function create(properties) {
+            return new RefreshToken(properties);
+        };
+
+        /**
+         * Encodes the specified RefreshToken message. Does not implicitly {@link authentication.RefreshToken.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {authentication.IRefreshToken} message RefreshToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RefreshToken.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.refreshToken != null && Object.hasOwnProperty.call(message, "refreshToken"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.refreshToken);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RefreshToken message, length delimited. Does not implicitly {@link authentication.RefreshToken.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {authentication.IRefreshToken} message RefreshToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RefreshToken.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RefreshToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.RefreshToken} RefreshToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RefreshToken.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.RefreshToken();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.refreshToken = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RefreshToken message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.RefreshToken} RefreshToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RefreshToken.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RefreshToken message.
+         * @function verify
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RefreshToken.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
+                if (!$util.isString(message.refreshToken))
+                    return "refreshToken: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a RefreshToken message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.RefreshToken} RefreshToken
+         */
+        RefreshToken.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.RefreshToken)
+                return object;
+            let message = new $root.authentication.RefreshToken();
+            if (object.refreshToken != null)
+                message.refreshToken = String(object.refreshToken);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RefreshToken message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {authentication.RefreshToken} message RefreshToken
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RefreshToken.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults)
+                object.refreshToken = "";
+            if (message.refreshToken != null && message.hasOwnProperty("refreshToken"))
+                object.refreshToken = message.refreshToken;
+            return object;
+        };
+
+        /**
+         * Converts this RefreshToken to JSON.
+         * @function toJSON
+         * @memberof authentication.RefreshToken
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RefreshToken.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RefreshToken
+         * @function getTypeUrl
+         * @memberof authentication.RefreshToken
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RefreshToken.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.RefreshToken";
+        };
+
+        return RefreshToken;
+    })();
+
+    authentication.VerifyToken = (function() {
+
+        /**
+         * Properties of a VerifyToken.
+         * @memberof authentication
+         * @interface IVerifyToken
+         */
+
+        /**
+         * Constructs a new VerifyToken.
+         * @memberof authentication
+         * @classdesc Represents a VerifyToken.
+         * @implements IVerifyToken
+         * @constructor
+         * @param {authentication.IVerifyToken=} [properties] Properties to set
+         */
+        function VerifyToken(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new VerifyToken instance using the specified properties.
+         * @function create
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {authentication.IVerifyToken=} [properties] Properties to set
+         * @returns {authentication.VerifyToken} VerifyToken instance
+         */
+        VerifyToken.create = function create(properties) {
+            return new VerifyToken(properties);
+        };
+
+        /**
+         * Encodes the specified VerifyToken message. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {authentication.IVerifyToken} message VerifyToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VerifyToken.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified VerifyToken message, length delimited. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {authentication.IVerifyToken} message VerifyToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        VerifyToken.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a VerifyToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.VerifyToken} VerifyToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VerifyToken.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.VerifyToken();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a VerifyToken message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.VerifyToken} VerifyToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        VerifyToken.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a VerifyToken message.
+         * @function verify
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        VerifyToken.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates a VerifyToken message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.VerifyToken} VerifyToken
+         */
+        VerifyToken.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.VerifyToken)
+                return object;
+            return new $root.authentication.VerifyToken();
+        };
+
+        /**
+         * Creates a plain object from a VerifyToken message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {authentication.VerifyToken} message VerifyToken
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        VerifyToken.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this VerifyToken to JSON.
+         * @function toJSON
+         * @memberof authentication.VerifyToken
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        VerifyToken.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for VerifyToken
+         * @function getTypeUrl
+         * @memberof authentication.VerifyToken
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        VerifyToken.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.VerifyToken";
+        };
+
+        return VerifyToken;
+    })();
+
+    authentication.TokenInvalid = (function() {
+
+        /**
+         * Properties of a TokenInvalid.
+         * @memberof authentication
+         * @interface ITokenInvalid
+         */
+
+        /**
+         * Constructs a new TokenInvalid.
+         * @memberof authentication
+         * @classdesc Represents a TokenInvalid.
+         * @implements ITokenInvalid
+         * @constructor
+         * @param {authentication.ITokenInvalid=} [properties] Properties to set
+         */
+        function TokenInvalid(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new TokenInvalid instance using the specified properties.
+         * @function create
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {authentication.ITokenInvalid=} [properties] Properties to set
+         * @returns {authentication.TokenInvalid} TokenInvalid instance
+         */
+        TokenInvalid.create = function create(properties) {
+            return new TokenInvalid(properties);
+        };
+
+        /**
+         * Encodes the specified TokenInvalid message. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
+         * @function encode
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {authentication.ITokenInvalid} message TokenInvalid message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TokenInvalid.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified TokenInvalid message, length delimited. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {authentication.ITokenInvalid} message TokenInvalid message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        TokenInvalid.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a TokenInvalid message from the specified reader or buffer.
+         * @function decode
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {authentication.TokenInvalid} TokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TokenInvalid.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.authentication.TokenInvalid();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a TokenInvalid message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {authentication.TokenInvalid} TokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        TokenInvalid.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a TokenInvalid message.
+         * @function verify
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        TokenInvalid.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates a TokenInvalid message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {authentication.TokenInvalid} TokenInvalid
+         */
+        TokenInvalid.fromObject = function fromObject(object) {
+            if (object instanceof $root.authentication.TokenInvalid)
+                return object;
+            return new $root.authentication.TokenInvalid();
+        };
+
+        /**
+         * Creates a plain object from a TokenInvalid message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {authentication.TokenInvalid} message TokenInvalid
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        TokenInvalid.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this TokenInvalid to JSON.
+         * @function toJSON
+         * @memberof authentication.TokenInvalid
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        TokenInvalid.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for TokenInvalid
+         * @function getTypeUrl
+         * @memberof authentication.TokenInvalid
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        TokenInvalid.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/authentication.TokenInvalid";
+        };
+
+        return TokenInvalid;
+    })();
+
+    return authentication;
 })();
 
 export const uploader = $root.uploader = (() => {
@@ -4207,55 +3949,65 @@ export const uploader = $root.uploader = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.created = reader.uint64();
-                    break;
-                case 2:
-                    message.path = reader.string();
-                    break;
-                case 3:
-                    message.name = reader.string();
-                    break;
-                case 4:
-                    message.mime = reader.string();
-                    break;
-                case 5:
-                    message.status = reader.int32();
-                    break;
-                case 6:
-                    message.retryCounter = reader.int32();
-                    break;
-                case 7:
-                    message.error = reader.string();
-                    break;
-                case 8:
-                    message.fingerprint = reader.string();
-                    break;
-                case 9:
-                    message.url = reader.string();
-                    break;
-                case 10:
-                    if (message.metadata === $util.emptyObject)
-                        message.metadata = {};
-                    let end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = "";
-                    while (reader.pos < end2) {
-                        let tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
-                        }
+                case 1: {
+                        message.created = reader.uint64();
+                        break;
                     }
-                    message.metadata[key] = value;
-                    break;
+                case 2: {
+                        message.path = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.mime = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.status = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.retryCounter = reader.int32();
+                        break;
+                    }
+                case 7: {
+                        message.error = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.fingerprint = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.url = reader.string();
+                        break;
+                    }
+                case 10: {
+                        if (message.metadata === $util.emptyObject)
+                            message.metadata = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.metadata[key] = value;
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4366,6 +4118,12 @@ export const uploader = $root.uploader = (() => {
             if (object.mime != null)
                 message.mime = String(object.mime);
             switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
             case "scheduled":
             case 0:
                 message.status = 0;
@@ -4451,7 +4209,7 @@ export const uploader = $root.uploader = (() => {
             if (message.mime != null && message.hasOwnProperty("mime"))
                 object.mime = message.mime;
             if (message.status != null && message.hasOwnProperty("status"))
-                object.status = options.enums === String ? $root.uploader.UploadStatus[message.status] : message.status;
+                object.status = options.enums === String ? $root.uploader.UploadStatus[message.status] === undefined ? message.status : $root.uploader.UploadStatus[message.status] : message.status;
             if (message.retryCounter != null && message.hasOwnProperty("retryCounter"))
                 object.retryCounter = message.retryCounter;
             if (message.error != null && message.hasOwnProperty("error"))
@@ -4478,6 +4236,21 @@ export const uploader = $root.uploader = (() => {
          */
         UploadTask.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadTask
+         * @function getTypeUrl
+         * @memberof uploader.UploadTask
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadTask.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/uploader.UploadTask";
         };
 
         return UploadTask;
@@ -4608,12 +4381,14 @@ export const uploader = $root.uploader = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.fileId = reader.string();
-                    break;
-                case 2:
-                    message.task = $root.uploader.UploadTask.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.fileId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.task = $root.uploader.UploadTask.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4717,6 +4492,21 @@ export const uploader = $root.uploader = (() => {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
+        /**
+         * Gets the default type url for UploadUFile
+         * @function getTypeUrl
+         * @memberof uploader.UploadUFile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadUFile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/uploader.UploadUFile";
+        };
+
         return UploadUFile;
     })();
 
@@ -4812,9 +4602,10 @@ export const uploader = $root.uploader = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4902,6 +4693,21 @@ export const uploader = $root.uploader = (() => {
          */
         DeleteUFile.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DeleteUFile
+         * @function getTypeUrl
+         * @memberof uploader.DeleteUFile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DeleteUFile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/uploader.DeleteUFile";
         };
 
         return DeleteUFile;
@@ -5012,31 +4818,33 @@ export const uploader = $root.uploader = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.file = $root.uploader.UFile.decode(reader, reader.uint32());
-                    break;
-                case 2:
-                    if (message.metadata === $util.emptyObject)
-                        message.metadata = {};
-                    let end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = "";
-                    while (reader.pos < end2) {
-                        let tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
-                        }
+                case 1: {
+                        message.file = $root.uploader.UFile.decode(reader, reader.uint32());
+                        break;
                     }
-                    message.metadata[key] = value;
-                    break;
+                case 2: {
+                        if (message.metadata === $util.emptyObject)
+                            message.metadata = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.metadata[key] = value;
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5152,6 +4960,21 @@ export const uploader = $root.uploader = (() => {
          */
         UploadSlot.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadSlot
+         * @function getTypeUrl
+         * @memberof uploader.UploadSlot
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadSlot.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/uploader.UploadSlot";
         };
 
         return UploadSlot;
@@ -5315,27 +5138,34 @@ export const uploader = $root.uploader = (() => {
             while (reader.pos < end) {
                 let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
-                case 2:
-                    message.src = reader.string();
-                    break;
-                case 3:
-                    message.preview = reader.string();
-                    break;
-                case 4:
-                    message.previewLarge = reader.string();
-                    break;
-                case 5:
-                    message.name = reader.string();
-                    break;
-                case 6:
-                    message.uploadTask = reader.string();
-                    break;
-                case 7:
-                    message.localPath = reader.string();
-                    break;
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.src = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.preview = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.previewLarge = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.uploadTask = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.localPath = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5472,6 +5302,21 @@ export const uploader = $root.uploader = (() => {
          */
         UFile.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UFile
+         * @function getTypeUrl
+         * @memberof uploader.UFile
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UFile.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/uploader.UFile";
         };
 
         return UFile;

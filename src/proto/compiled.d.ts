@@ -1,762 +1,4 @@
 import * as $protobuf from "protobufjs";
-/** Namespace authentication. */
-export namespace authentication {
-
-    /** Properties of a LoginToken. */
-    interface ILoginToken {
-
-        /** LoginToken token */
-        token?: (string|null);
-    }
-
-    /** Represents a LoginToken. */
-    class LoginToken implements ILoginToken {
-
-        /**
-         * Constructs a new LoginToken.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.ILoginToken);
-
-        /** LoginToken token. */
-        public token: string;
-
-        /**
-         * Creates a new LoginToken instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns LoginToken instance
-         */
-        public static create(properties?: authentication.ILoginToken): authentication.LoginToken;
-
-        /**
-         * Encodes the specified LoginToken message. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
-         * @param message LoginToken message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.ILoginToken, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified LoginToken message, length delimited. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
-         * @param message LoginToken message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.ILoginToken, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a LoginToken message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns LoginToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.LoginToken;
-
-        /**
-         * Decodes a LoginToken message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns LoginToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.LoginToken;
-
-        /**
-         * Verifies a LoginToken message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a LoginToken message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns LoginToken
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.LoginToken;
-
-        /**
-         * Creates a plain object from a LoginToken message. Also converts values to other types if specified.
-         * @param message LoginToken
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.LoginToken, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this LoginToken to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a LoginError. */
-    interface ILoginError {
-
-        /** LoginError errorText */
-        errorText?: (string|null);
-
-        /** LoginError errorCode */
-        errorCode?: (string|null);
-    }
-
-    /** Represents a LoginError. */
-    class LoginError implements ILoginError {
-
-        /**
-         * Constructs a new LoginError.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.ILoginError);
-
-        /** LoginError errorText. */
-        public errorText: string;
-
-        /** LoginError errorCode. */
-        public errorCode: string;
-
-        /**
-         * Creates a new LoginError instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns LoginError instance
-         */
-        public static create(properties?: authentication.ILoginError): authentication.LoginError;
-
-        /**
-         * Encodes the specified LoginError message. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
-         * @param message LoginError message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.ILoginError, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified LoginError message, length delimited. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
-         * @param message LoginError message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.ILoginError, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a LoginError message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns LoginError
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.LoginError;
-
-        /**
-         * Decodes a LoginError message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns LoginError
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.LoginError;
-
-        /**
-         * Verifies a LoginError message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a LoginError message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns LoginError
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.LoginError;
-
-        /**
-         * Creates a plain object from a LoginError message. Also converts values to other types if specified.
-         * @param message LoginError
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.LoginError, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this LoginError to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a Login. */
-    interface ILogin {
-
-        /** Login username */
-        username?: (string|null);
-
-        /** Login password */
-        password?: (string|null);
-    }
-
-    /** Represents a Login. */
-    class Login implements ILogin {
-
-        /**
-         * Constructs a new Login.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.ILogin);
-
-        /** Login username. */
-        public username: string;
-
-        /** Login password. */
-        public password: string;
-
-        /**
-         * Creates a new Login instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Login instance
-         */
-        public static create(properties?: authentication.ILogin): authentication.Login;
-
-        /**
-         * Encodes the specified Login message. Does not implicitly {@link authentication.Login.verify|verify} messages.
-         * @param message Login message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.ILogin, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Login message, length delimited. Does not implicitly {@link authentication.Login.verify|verify} messages.
-         * @param message Login message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.ILogin, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Login message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Login
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.Login;
-
-        /**
-         * Decodes a Login message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Login
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.Login;
-
-        /**
-         * Verifies a Login message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Login message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Login
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.Login;
-
-        /**
-         * Creates a plain object from a Login message. Also converts values to other types if specified.
-         * @param message Login
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.Login, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Login to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of an AppleLogin. */
-    interface IAppleLogin {
-
-        /** AppleLogin code */
-        code?: (string|null);
-
-        /** AppleLogin firstName */
-        firstName?: (string|null);
-
-        /** AppleLogin lastName */
-        lastName?: (string|null);
-
-        /** AppleLogin useBundleId */
-        useBundleId?: (boolean|null);
-
-        /** AppleLogin state */
-        state?: (string|null);
-    }
-
-    /** Represents an AppleLogin. */
-    class AppleLogin implements IAppleLogin {
-
-        /**
-         * Constructs a new AppleLogin.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.IAppleLogin);
-
-        /** AppleLogin code. */
-        public code: string;
-
-        /** AppleLogin firstName. */
-        public firstName: string;
-
-        /** AppleLogin lastName. */
-        public lastName: string;
-
-        /** AppleLogin useBundleId. */
-        public useBundleId: boolean;
-
-        /** AppleLogin state. */
-        public state: string;
-
-        /**
-         * Creates a new AppleLogin instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns AppleLogin instance
-         */
-        public static create(properties?: authentication.IAppleLogin): authentication.AppleLogin;
-
-        /**
-         * Encodes the specified AppleLogin message. Does not implicitly {@link authentication.AppleLogin.verify|verify} messages.
-         * @param message AppleLogin message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.IAppleLogin, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified AppleLogin message, length delimited. Does not implicitly {@link authentication.AppleLogin.verify|verify} messages.
-         * @param message AppleLogin message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.IAppleLogin, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an AppleLogin message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns AppleLogin
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.AppleLogin;
-
-        /**
-         * Decodes an AppleLogin message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns AppleLogin
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.AppleLogin;
-
-        /**
-         * Verifies an AppleLogin message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an AppleLogin message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns AppleLogin
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.AppleLogin;
-
-        /**
-         * Creates a plain object from an AppleLogin message. Also converts values to other types if specified.
-         * @param message AppleLogin
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.AppleLogin, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this AppleLogin to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a VerifyToken. */
-    interface IVerifyToken {
-    }
-
-    /** Represents a VerifyToken. */
-    class VerifyToken implements IVerifyToken {
-
-        /**
-         * Constructs a new VerifyToken.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.IVerifyToken);
-
-        /**
-         * Creates a new VerifyToken instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns VerifyToken instance
-         */
-        public static create(properties?: authentication.IVerifyToken): authentication.VerifyToken;
-
-        /**
-         * Encodes the specified VerifyToken message. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
-         * @param message VerifyToken message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.IVerifyToken, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified VerifyToken message, length delimited. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
-         * @param message VerifyToken message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.IVerifyToken, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a VerifyToken message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns VerifyToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.VerifyToken;
-
-        /**
-         * Decodes a VerifyToken message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns VerifyToken
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.VerifyToken;
-
-        /**
-         * Verifies a VerifyToken message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a VerifyToken message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns VerifyToken
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.VerifyToken;
-
-        /**
-         * Creates a plain object from a VerifyToken message. Also converts values to other types if specified.
-         * @param message VerifyToken
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.VerifyToken, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this VerifyToken to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a TokenInvalid. */
-    interface ITokenInvalid {
-    }
-
-    /** Represents a TokenInvalid. */
-    class TokenInvalid implements ITokenInvalid {
-
-        /**
-         * Constructs a new TokenInvalid.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: authentication.ITokenInvalid);
-
-        /**
-         * Creates a new TokenInvalid instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns TokenInvalid instance
-         */
-        public static create(properties?: authentication.ITokenInvalid): authentication.TokenInvalid;
-
-        /**
-         * Encodes the specified TokenInvalid message. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
-         * @param message TokenInvalid message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: authentication.ITokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified TokenInvalid message, length delimited. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
-         * @param message TokenInvalid message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: authentication.ITokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a TokenInvalid message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns TokenInvalid
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.TokenInvalid;
-
-        /**
-         * Decodes a TokenInvalid message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns TokenInvalid
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.TokenInvalid;
-
-        /**
-         * Verifies a TokenInvalid message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a TokenInvalid message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns TokenInvalid
-         */
-        public static fromObject(object: { [k: string]: any }): authentication.TokenInvalid;
-
-        /**
-         * Creates a plain object from a TokenInvalid message. Also converts values to other types if specified.
-         * @param message TokenInvalid
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: authentication.TokenInvalid, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this TokenInvalid to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-}
-
-/** Namespace form_errors. */
-export namespace form_errors {
-
-    /** Properties of a FormErrors. */
-    interface IFormErrors {
-
-        /** FormErrors relatedMessageType */
-        relatedMessageType?: (string|null);
-
-        /** FormErrors errors */
-        errors?: ({ [k: string]: form_errors.ISList }|null);
-    }
-
-    /** Represents a FormErrors. */
-    class FormErrors implements IFormErrors {
-
-        /**
-         * Constructs a new FormErrors.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: form_errors.IFormErrors);
-
-        /** FormErrors relatedMessageType. */
-        public relatedMessageType: string;
-
-        /** FormErrors errors. */
-        public errors: { [k: string]: form_errors.ISList };
-
-        /**
-         * Creates a new FormErrors instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns FormErrors instance
-         */
-        public static create(properties?: form_errors.IFormErrors): form_errors.FormErrors;
-
-        /**
-         * Encodes the specified FormErrors message. Does not implicitly {@link form_errors.FormErrors.verify|verify} messages.
-         * @param message FormErrors message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: form_errors.IFormErrors, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified FormErrors message, length delimited. Does not implicitly {@link form_errors.FormErrors.verify|verify} messages.
-         * @param message FormErrors message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: form_errors.IFormErrors, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a FormErrors message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns FormErrors
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_errors.FormErrors;
-
-        /**
-         * Decodes a FormErrors message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns FormErrors
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_errors.FormErrors;
-
-        /**
-         * Verifies a FormErrors message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a FormErrors message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns FormErrors
-         */
-        public static fromObject(object: { [k: string]: any }): form_errors.FormErrors;
-
-        /**
-         * Creates a plain object from a FormErrors message. Also converts values to other types if specified.
-         * @param message FormErrors
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: form_errors.FormErrors, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this FormErrors to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
-    /** Properties of a SList. */
-    interface ISList {
-
-        /** SList list */
-        list?: (string[]|null);
-    }
-
-    /** Represents a SList. */
-    class SList implements ISList {
-
-        /**
-         * Constructs a new SList.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: form_errors.ISList);
-
-        /** SList list. */
-        public list: string[];
-
-        /**
-         * Creates a new SList instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns SList instance
-         */
-        public static create(properties?: form_errors.ISList): form_errors.SList;
-
-        /**
-         * Encodes the specified SList message. Does not implicitly {@link form_errors.SList.verify|verify} messages.
-         * @param message SList message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: form_errors.ISList, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified SList message, length delimited. Does not implicitly {@link form_errors.SList.verify|verify} messages.
-         * @param message SList message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: form_errors.ISList, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a SList message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns SList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_errors.SList;
-
-        /**
-         * Decodes a SList message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns SList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_errors.SList;
-
-        /**
-         * Verifies a SList message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a SList message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns SList
-         */
-        public static fromObject(object: { [k: string]: any }): form_errors.SList;
-
-        /**
-         * Creates a plain object from a SList message. Also converts values to other types if specified.
-         * @param message SList
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: form_errors.SList, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this SList to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-}
-
 /** Namespace sfiles. */
 export namespace sfiles {
 
@@ -854,6 +96,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadStartSlot
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadProgress. */
@@ -956,6 +205,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadProgress
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadDone. */
@@ -1052,6 +308,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadDone
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadedFile. */
@@ -1074,9 +337,6 @@ export namespace sfiles {
 
         /** UploadedFile name */
         name?: (string|null);
-
-        /** UploadedFile downloadable */
-        downloadable?: (boolean|null);
     }
 
     /** Represents an UploadedFile. */
@@ -1105,9 +365,6 @@ export namespace sfiles {
 
         /** UploadedFile name. */
         public name: string;
-
-        /** UploadedFile downloadable. */
-        public downloadable: boolean;
 
         /**
          * Creates a new UploadedFile instance using the specified properties.
@@ -1178,6 +435,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadedFile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadStart. */
@@ -1286,6 +550,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadStart
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of a DeleteFile. */
@@ -1376,6 +647,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for DeleteFile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadEnd. */
@@ -1460,6 +738,13 @@ export namespace sfiles {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadEnd
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 
@@ -1477,6 +762,9 @@ export namespace socket_api {
 
         /** Ack asyncProgressKey */
         asyncProgressKey?: (string|null);
+
+        /** Ack errorCode */
+        errorCode?: (number|null);
     }
 
     /** Represents an Ack. */
@@ -1496,6 +784,9 @@ export namespace socket_api {
 
         /** Ack asyncProgressKey. */
         public asyncProgressKey: string;
+
+        /** Ack errorCode. */
+        public errorCode: number;
 
         /**
          * Creates a new Ack instance using the specified properties.
@@ -1566,6 +857,13 @@ export namespace socket_api {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Ack
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an AsyncProgress. */
@@ -1680,6 +978,13 @@ export namespace socket_api {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AsyncProgress
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UpgradeApiVersion. */
@@ -1770,6 +1075,605 @@ export namespace socket_api {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UpgradeApiVersion
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+}
+
+/** Namespace authentication. */
+export namespace authentication {
+
+    /** Properties of a LoginToken. */
+    interface ILoginToken {
+
+        /** LoginToken token */
+        token?: (string|null);
+
+        /** LoginToken refresh */
+        refresh?: (string|null);
+    }
+
+    /** Represents a LoginToken. */
+    class LoginToken implements ILoginToken {
+
+        /**
+         * Constructs a new LoginToken.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.ILoginToken);
+
+        /** LoginToken token. */
+        public token: string;
+
+        /** LoginToken refresh. */
+        public refresh: string;
+
+        /**
+         * Creates a new LoginToken instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LoginToken instance
+         */
+        public static create(properties?: authentication.ILoginToken): authentication.LoginToken;
+
+        /**
+         * Encodes the specified LoginToken message. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
+         * @param message LoginToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.ILoginToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LoginToken message, length delimited. Does not implicitly {@link authentication.LoginToken.verify|verify} messages.
+         * @param message LoginToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.ILoginToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LoginToken message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LoginToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.LoginToken;
+
+        /**
+         * Decodes a LoginToken message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LoginToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.LoginToken;
+
+        /**
+         * Verifies a LoginToken message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LoginToken message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LoginToken
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.LoginToken;
+
+        /**
+         * Creates a plain object from a LoginToken message. Also converts values to other types if specified.
+         * @param message LoginToken
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.LoginToken, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LoginToken to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LoginToken
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a LoginError. */
+    interface ILoginError {
+
+        /** LoginError errorText */
+        errorText?: (string|null);
+
+        /** LoginError errorCode */
+        errorCode?: (string|null);
+    }
+
+    /** Represents a LoginError. */
+    class LoginError implements ILoginError {
+
+        /**
+         * Constructs a new LoginError.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.ILoginError);
+
+        /** LoginError errorText. */
+        public errorText: string;
+
+        /** LoginError errorCode. */
+        public errorCode: string;
+
+        /**
+         * Creates a new LoginError instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LoginError instance
+         */
+        public static create(properties?: authentication.ILoginError): authentication.LoginError;
+
+        /**
+         * Encodes the specified LoginError message. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
+         * @param message LoginError message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.ILoginError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LoginError message, length delimited. Does not implicitly {@link authentication.LoginError.verify|verify} messages.
+         * @param message LoginError message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.ILoginError, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LoginError message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LoginError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.LoginError;
+
+        /**
+         * Decodes a LoginError message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LoginError
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.LoginError;
+
+        /**
+         * Verifies a LoginError message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LoginError message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LoginError
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.LoginError;
+
+        /**
+         * Creates a plain object from a LoginError message. Also converts values to other types if specified.
+         * @param message LoginError
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.LoginError, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LoginError to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LoginError
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Login. */
+    interface ILogin {
+
+        /** Login username */
+        username?: (string|null);
+
+        /** Login password */
+        password?: (string|null);
+    }
+
+    /** Represents a Login. */
+    class Login implements ILogin {
+
+        /**
+         * Constructs a new Login.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.ILogin);
+
+        /** Login username. */
+        public username: string;
+
+        /** Login password. */
+        public password: string;
+
+        /**
+         * Creates a new Login instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Login instance
+         */
+        public static create(properties?: authentication.ILogin): authentication.Login;
+
+        /**
+         * Encodes the specified Login message. Does not implicitly {@link authentication.Login.verify|verify} messages.
+         * @param message Login message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.ILogin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Login message, length delimited. Does not implicitly {@link authentication.Login.verify|verify} messages.
+         * @param message Login message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.ILogin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Login message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Login
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.Login;
+
+        /**
+         * Decodes a Login message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Login
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.Login;
+
+        /**
+         * Verifies a Login message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Login message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Login
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.Login;
+
+        /**
+         * Creates a plain object from a Login message. Also converts values to other types if specified.
+         * @param message Login
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.Login, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Login to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Login
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a RefreshToken. */
+    interface IRefreshToken {
+
+        /** RefreshToken refreshToken */
+        refreshToken?: (string|null);
+    }
+
+    /** Represents a RefreshToken. */
+    class RefreshToken implements IRefreshToken {
+
+        /**
+         * Constructs a new RefreshToken.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.IRefreshToken);
+
+        /** RefreshToken refreshToken. */
+        public refreshToken: string;
+
+        /**
+         * Creates a new RefreshToken instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RefreshToken instance
+         */
+        public static create(properties?: authentication.IRefreshToken): authentication.RefreshToken;
+
+        /**
+         * Encodes the specified RefreshToken message. Does not implicitly {@link authentication.RefreshToken.verify|verify} messages.
+         * @param message RefreshToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.IRefreshToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RefreshToken message, length delimited. Does not implicitly {@link authentication.RefreshToken.verify|verify} messages.
+         * @param message RefreshToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.IRefreshToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RefreshToken message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RefreshToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.RefreshToken;
+
+        /**
+         * Decodes a RefreshToken message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RefreshToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.RefreshToken;
+
+        /**
+         * Verifies a RefreshToken message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RefreshToken message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RefreshToken
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.RefreshToken;
+
+        /**
+         * Creates a plain object from a RefreshToken message. Also converts values to other types if specified.
+         * @param message RefreshToken
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.RefreshToken, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RefreshToken to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for RefreshToken
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a VerifyToken. */
+    interface IVerifyToken {
+    }
+
+    /** Represents a VerifyToken. */
+    class VerifyToken implements IVerifyToken {
+
+        /**
+         * Constructs a new VerifyToken.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.IVerifyToken);
+
+        /**
+         * Creates a new VerifyToken instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns VerifyToken instance
+         */
+        public static create(properties?: authentication.IVerifyToken): authentication.VerifyToken;
+
+        /**
+         * Encodes the specified VerifyToken message. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
+         * @param message VerifyToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.IVerifyToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified VerifyToken message, length delimited. Does not implicitly {@link authentication.VerifyToken.verify|verify} messages.
+         * @param message VerifyToken message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.IVerifyToken, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a VerifyToken message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns VerifyToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.VerifyToken;
+
+        /**
+         * Decodes a VerifyToken message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns VerifyToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.VerifyToken;
+
+        /**
+         * Verifies a VerifyToken message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a VerifyToken message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns VerifyToken
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.VerifyToken;
+
+        /**
+         * Creates a plain object from a VerifyToken message. Also converts values to other types if specified.
+         * @param message VerifyToken
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.VerifyToken, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this VerifyToken to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for VerifyToken
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a TokenInvalid. */
+    interface ITokenInvalid {
+    }
+
+    /** Represents a TokenInvalid. */
+    class TokenInvalid implements ITokenInvalid {
+
+        /**
+         * Constructs a new TokenInvalid.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.ITokenInvalid);
+
+        /**
+         * Creates a new TokenInvalid instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns TokenInvalid instance
+         */
+        public static create(properties?: authentication.ITokenInvalid): authentication.TokenInvalid;
+
+        /**
+         * Encodes the specified TokenInvalid message. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
+         * @param message TokenInvalid message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.ITokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified TokenInvalid message, length delimited. Does not implicitly {@link authentication.TokenInvalid.verify|verify} messages.
+         * @param message TokenInvalid message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.ITokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a TokenInvalid message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns TokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.TokenInvalid;
+
+        /**
+         * Decodes a TokenInvalid message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns TokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.TokenInvalid;
+
+        /**
+         * Verifies a TokenInvalid message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a TokenInvalid message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns TokenInvalid
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.TokenInvalid;
+
+        /**
+         * Creates a plain object from a TokenInvalid message. Also converts values to other types if specified.
+         * @param message TokenInvalid
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.TokenInvalid, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this TokenInvalid to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for TokenInvalid
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }
 
@@ -1918,6 +1822,13 @@ export namespace uploader {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadTask
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** UploadStatus enum. */
@@ -2024,6 +1935,13 @@ export namespace uploader {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadUFile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of a DeleteUFile. */
@@ -2114,6 +2032,13 @@ export namespace uploader {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for DeleteUFile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of an UploadSlot. */
@@ -2210,6 +2135,13 @@ export namespace uploader {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadSlot
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of a UFile. */
@@ -2336,5 +2268,12 @@ export namespace uploader {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UFile
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 }

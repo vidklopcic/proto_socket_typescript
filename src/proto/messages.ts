@@ -1,24 +1,7 @@
 import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
-import {socket_api, uploader, sfiles, form_errors, authentication} from "./compiled";
+import {uploader, sfiles, socket_api, authentication} from "./compiled";
 
 export namespace proto {
-
-export class TxAppleLogin extends SocketTxMessage<authentication.AppleLogin> {
-    static type: string = 'apple-login';
-    proto: authentication.AppleLogin;
-    protoClass = authentication.AppleLogin;
-    
-
-    constructor(proto: authentication.AppleLogin) {
-        super(TxAppleLogin.type, true);
-        this.proto = proto;
-    }
-
-    static create(properties: authentication.IAppleLogin = {}) {
-        return new TxAppleLogin(authentication.AppleLogin.create(properties));
-    }
-}
-
 
 export class TxLogin extends SocketTxMessage<authentication.Login> {
     static type: string = 'login';
@@ -75,6 +58,23 @@ export class RxLoginToken extends SocketRxMessage<authentication.LoginToken> {
 }
 
 
+export class TxRefreshToken extends SocketTxMessage<authentication.RefreshToken> {
+    static type: string = 'refresh-token';
+    proto: authentication.RefreshToken;
+    protoClass = authentication.RefreshToken;
+    
+
+    constructor(proto: authentication.RefreshToken) {
+        super(TxRefreshToken.type, true);
+        this.proto = proto;
+    }
+
+    static create(properties: authentication.IRefreshToken = {}) {
+        return new TxRefreshToken(authentication.RefreshToken.create(properties));
+    }
+}
+
+
 export class RxTokenInvalid extends SocketRxMessage<authentication.TokenInvalid> {
     static type: string = 'token-invalid';
     proto = authentication.TokenInvalid.create({});
@@ -108,25 +108,6 @@ export class TxVerifyToken extends SocketTxMessage<authentication.VerifyToken> {
     static create(properties: authentication.IVerifyToken = {}) {
         return new TxVerifyToken(authentication.VerifyToken.create(properties));
     }
-}
-
-
-export class RxFormErrors extends SocketRxMessage<form_errors.FormErrors> {
-    static type: string = 'form-errors';
-    proto = form_errors.FormErrors.create({});
-    protoClass = form_errors.FormErrors;
-    
-
-    constructor(message: SocketRxMessageData | null = null) {
-        super(RxFormErrors.type, message);
-        if (message !== null) {
-            this.proto = this.protoClass.fromObject(message.body);
-        }
-    }
-
-    fromMessage(message: SocketRxMessageData) {
-        return new RxFormErrors(message);
-    };
 }
 
 
@@ -367,11 +348,10 @@ export class TxUploadUFile extends SocketTxMessage<uploader.UploadUFile> {
 }
 
 
-export const rxMessages: SocketRxMessage<any>[] = [
-    new RxLoginError(),
+        export const rxMessages: SocketRxMessage<any>[] = [
+            new RxLoginError(),
     new RxLoginToken(),
     new RxTokenInvalid(),
-    new RxFormErrors(),
     new RxUploadDone(),
     new RxUploadProgress(),
     new RxUploadStartSlot(),
@@ -380,5 +360,5 @@ export const rxMessages: SocketRxMessage<any>[] = [
     new RxUpgradeApiVersion(),
     new RxUploadSlot(),
     new RxUploadTask()
-];
+        ];
 }
