@@ -66,31 +66,43 @@ export class SocketApi {
         if (waitConnected) {
             await this.connection.whenConnected;
         }
+
+        const uuid = uuidv4();
+
+        // wait for response
         firstValueFrom(
             this.getMessageHandler(result)
+                .pipe(filter((e) => e.message?.uuid === uuid))
                 .pipe(timeout({first: timeoutMs}))
         ).then((e) => {
             result = e;
-        })
-        const response = await this.sendMessage(message, {ack: true, timeoutMs, waitConnected});
+        }).catch(() => {
+            if (this.logging) {
+                console.log('fetch timeout', message, result);
+            }
+        });
+
+        // send message
+        const response = await this.sendMessage(message, {ack: true, timeoutMs, instanceUuid: uuid, waitConnected});
         if (response.status !== SocketApiAckStatus.success) {
             throw response;
         }
         if (result.message == null) {
             throw new Error(`(${result}).message is null`);
         }
+
         return result;
     }
 
     async sendMessage(
         message: SocketTxMessage<any>,
-        {ack = false, timeoutMs = 10000, waitConnected = true} = {},
+        {ack = false, timeoutMs = 10000, waitConnected = true, instanceUuid = undefined as string | undefined} = {},
     ): Promise<SocketApiTxStatus> {
         if (waitConnected) {
             await this.connection.whenConnected;
         }
         this._txMessageHandlers.get(message.messageType)?.next(message);
-        const instanceUuid = uuidv4();
+        instanceUuid = instanceUuid ?? uuidv4();
         const msg = JSON.stringify({
             body: message.data,
             headers: {
