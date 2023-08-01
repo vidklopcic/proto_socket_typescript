@@ -1,6 +1,6 @@
 {
   "name": "proto_socket_typescript",
-  "version": "1.0.9",
+  "version": "1.0.13",
   "license": "MIT",
   "description": "Simple library that handles communication over websocket with 'proto_socket_django' backend.",
   "main": "lib/index.js",

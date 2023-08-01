@@ -142,11 +142,7 @@ export class SocketApi {
             return new SocketApiTxStatus(
                 status,
                 msg.proto.errorMessage,
-                msg.proto.asyncProgressKey.length > 0
-                    ? (this.getMessageHandler(new proto.RxAsyncProgress()).pipe(
-                        filter((event) => event.proto.key === msg.proto.asyncProgressKey),
-                    ) as Subject<proto.RxAsyncProgress>)
-                    : null,
+                msg.proto.errorCode,
             );
         } catch (e) {
             // timeout
@@ -172,41 +168,16 @@ export enum SocketApiAckStatus {
 
 export class SocketApiTxStatus {
     status: SocketApiAckStatus;
+    error: number | null;
     errorMessage: string | null;
-    asyncProgress: Subject<proto.RxAsyncProgress> | null;
-    _asyncResult: SocketApiTxStatus | null = null;
-
-    isAsync(): boolean {
-        return this.asyncProgress !== null;
-    }
 
     constructor(
         status: SocketApiAckStatus,
         errorMessage: string | null = null,
-        asyncProgress: Subject<proto.RxAsyncProgress> | null = null,
+        error: number | null = null,
     ) {
         this.status = status;
+        this.error = error;
         this.errorMessage = errorMessage;
-        this.asyncProgress = asyncProgress;
-    }
-
-    asyncResult({timeoutMs = null as number | null}): Promise<SocketApiTxStatus> {
-        return new Promise<SocketApiTxStatus>(async (resolve, reject) => {
-            if (!this.isAsync) return resolve(this);
-            if (this._asyncResult !== null) return resolve(this._asyncResult);
-            try {
-                const msg: proto.RxAsyncProgress = await firstValueFrom(
-                    this.asyncProgress!.pipe(first((event) => event.proto.done)).pipe(timeout({first: timeoutMs || 1e9})),
-                );
-
-                const msgStatus =
-                    msg.proto.errorMessage.length > 0 ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-                this._asyncResult = new SocketApiTxStatus(msgStatus, msg.proto.errorMessage);
-            } catch (e) {
-                // timeout
-                this._asyncResult = new SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
-            }
-            return this._asyncResult;
-        });
     }
 }
