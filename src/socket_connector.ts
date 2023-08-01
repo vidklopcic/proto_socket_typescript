@@ -27,7 +27,11 @@ export class SocketConnector {
     constructor(host: string) {
         this.host = host;
         if (typeof window !== 'undefined') {
-            window.addEventListener('focus', () => this.reconnect());
+            window.addEventListener('focus', () => {
+                if (!this.connected) {
+                    this.reconnect();
+                }
+            });
         }
         this.reconnect();
     }
