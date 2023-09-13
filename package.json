@@ -1,6 +1,6 @@
 {
   "name": "proto_socket_typescript",
-  "version": "1.0.14",
+  "version": "1.0.16",
   "license": "MIT",
   "description": "Simple library that handles communication over websocket with 'proto_socket_django' backend.",
   "main": "lib/index.js",
@@ -33,8 +33,10 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
+    "@types/ws": "^8.5.5",
     "protobufjs": "^6.11.3",
     "rxjs": "^7.4.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ws": "^8.14.1"
   }
 }
