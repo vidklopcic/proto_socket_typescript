@@ -9,7 +9,7 @@ export class SocketApi {
     apiVersion = 1;
     logging = false;
 
-    private _txMessageHandlers = new Map<string, Subject<any>>();
+    private _txMessageHandlers = new Map<string, TxMessageHandler>();
     private _messageHandlers = new Map<string, Subject<any>>();
     private _messageConverters = new Map<string, SocketRxMessage<any>>();
 
@@ -59,9 +59,24 @@ export class SocketApi {
         }
     }
 
-    getTxMessageHandler<T extends SocketTxMessage<any>>(message: T): Subject<T> {
+    removeTxMessageHandler<T extends SocketTxMessage<any>>(message: T): void {
         const messageType = this.formatMessageType(message.messageType);
-        return this._txMessageHandlers.get(messageType) as Subject<T>;
+        this._txMessageHandlers.delete(messageType);
+    }
+
+    getTxMessageHandler<T extends SocketTxMessage<any>>(message: T, props?: { intercept?: boolean }): Subject<T> {
+        const messageType = this.formatMessageType(message.messageType);
+        if (!this._txMessageHandlers.has(messageType)) {
+            this._txMessageHandlers.set(messageType, {
+                intercept: props?.intercept ?? false,
+                handler: new Subject<T>(),
+            });
+        }
+        const handler = this._txMessageHandlers.get(messageType)!;
+        if ((props?.intercept ?? false) !== handler.intercept) {
+            throw new Error('intercept mismatch - first remove existing handler');
+        }
+        return handler.handler as Subject<T>
     }
 
     getMessageHandler<T extends SocketRxMessage<any>>(message: T): Subject<T> {
@@ -129,7 +144,8 @@ export class SocketApi {
             await this.connection.whenConnected;
         }
         const messageType = this.formatMessageType(message.messageType);
-        this._txMessageHandlers.get(messageType)?.next(message);
+        const txHandler = this._txMessageHandlers.get(messageType);
+        txHandler?.handler.next(message);
         instanceUuid = instanceUuid ?? uuidv4();
 
         const getHeaders = () => {
@@ -156,16 +172,18 @@ export class SocketApi {
             }
         }
 
-        const msg = JSON.stringify({
-            body: message.data,
-            headers: getHeaders(),
-        });
-        if (this.logging) console.log('txevent:', msg);
-        try {
-            this.connection.send(msg);
-        } catch (e) {
-            console.log('error sending', e);
-            return new SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
+        if (!txHandler?.intercept) {
+            const msg = JSON.stringify({
+                body: message.data,
+                headers: getHeaders(),
+            });
+            if (this.logging) console.log('txevent:', msg);
+            try {
+                this.connection.send(msg);
+            } catch (e) {
+                console.log('error sending', e);
+                return new SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
+            }
         }
 
         if (ack) {
@@ -241,4 +259,10 @@ export class SocketApiTxStatus {
         this.error = error;
         this.errorMessage = errorMessage;
     }
+}
+
+
+interface TxMessageHandler {
+    intercept: boolean,
+    handler: Subject<any>,
 }
