@@ -5,7 +5,6 @@ import {v4 as uuidv4} from 'uuid';
 import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from './socket_messages';
 
 export class SocketApi {
-    noCache: boolean = false;
     private _token = null as string | null;
     apiVersion = 1;
     logging = false;
@@ -16,6 +15,7 @@ export class SocketApi {
 
     authenticatedChanges = new Subject<boolean>();
     connection: SocketConnector;
+    private variant: SocketApiVariant;
 
     get authenticated(): boolean {
         return this._token !== null;
@@ -38,25 +38,42 @@ export class SocketApi {
         }
     }
 
-    constructor(host: string) {
+    constructor(host?: string, variant?: SocketApiVariant) {
+        this.variant = variant ?? SocketApiVariant.proto;
         this.connection = new SocketConnector(host);
         this.connection.rx.subscribe((e: string) => this._onData(e));
         this.setMessages(proto.rxMessages);
     }
 
+    formatMessageType(messageType: string): string {
+        switch (this.variant) {
+            case SocketApiVariant.ilol:
+                if (messageType.includes('_')) {
+                    return messageType.split('_')[1];
+                } else {
+                    return messageType;
+                }
+            case SocketApiVariant.proto:
+            default:
+                return messageType;
+        }
+    }
+
     getMessageHandler<T extends SocketRxMessage<any>>(message: T): Subject<T> {
-        if (!this._messageConverters.has(message.messageType)) {
-            this._messageConverters.set(message.messageType, message);
+        const messageType = this.formatMessageType(message.messageType);
+        if (!this._messageConverters.has(messageType)) {
+            this._messageConverters.set(messageType, message);
         }
-        if (!this._messageHandlers.has(message.messageType)) {
-            this._messageHandlers.set(message.messageType, new Subject<T>());
+        if (!this._messageHandlers.has(messageType)) {
+            this._messageHandlers.set(messageType, new Subject<T>());
         }
-        return this._messageHandlers.get(message.messageType) as Subject<T>;
+        return this._messageHandlers.get(messageType) as Subject<T>;
     }
 
     setMessages(messages: SocketRxMessage<any>[]): void {
         for (const message of messages) {
-            this._messageConverters.set(message.messageType, message);
+            const messageType = this.formatMessageType(message.messageType);
+            this._messageConverters.set(messageType, message);
         }
     }
 
@@ -101,20 +118,37 @@ export class SocketApi {
         if (waitConnected) {
             await this.connection.whenConnected;
         }
-        this._txMessageHandlers.get(message.messageType)?.next(message);
+        const messageType = this.formatMessageType(message.messageType);
+        this._txMessageHandlers.get(messageType)?.next(message);
         instanceUuid = instanceUuid ?? uuidv4();
+
+        const getHeaders = () => {
+            switch (this.variant) {
+                case SocketApiVariant.ilol:
+                    return {
+                        eventTimestamp: Math.round(Date.now()),
+                        eventName: messageType,
+                        eventId: instanceUuid,
+                        authToken: this._token,
+                    };
+                case SocketApiVariant.proto:
+                default:
+                    return {
+                        messageType,
+                        authHeader: this._token,
+                        eventTime: Date.now(),
+                        localTime: Date.now(),
+                        ack,
+                        retryCount: 0,
+                        apiVersion: this.apiVersion,
+                        uuid: instanceUuid,
+                    };
+            }
+        }
+
         const msg = JSON.stringify({
             body: message.data,
-            headers: {
-                messageType: message.messageType,
-                authHeader: this._token,
-                eventTime: Date.now(),
-                localTime: Date.now(),
-                ack,
-                retryCount: 0,
-                apiVersion: this.apiVersion,
-                uuid: instanceUuid,
-            },
+            headers: getHeaders(),
         });
         if (this.logging) console.log('txevent:', msg);
         try {
@@ -127,23 +161,35 @@ export class SocketApi {
         if (ack) {
             return await this._waitAck(instanceUuid, timeoutMs);
         } else {
-            return new SocketApiTxStatus(SocketApiAckStatus.success, '');
+            return new SocketApiTxStatus(SocketApiAckStatus.success);
         }
     }
 
     async _waitAck(instanceUuid: string, timeoutMs: number): Promise<SocketApiTxStatus> {
         try {
-            const msg = await firstValueFrom(
-                this.getMessageHandler(new proto.RxAck())
-                    .pipe(filter((event) => event.proto.uuid === instanceUuid))
-                    .pipe(timeout({first: timeoutMs})),
-            );
-            const status = msg.proto.errorMessage.length > 0 ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
-            return new SocketApiTxStatus(
-                status,
-                msg.proto.errorMessage,
-                msg.proto.errorCode,
-            );
+            let msg;
+            switch (this.variant) {
+                case SocketApiVariant.ilol:
+                    msg = await firstValueFrom(
+                        this.getMessageHandler(new proto.RxIlolAck())
+                            .pipe(filter((event) => event.proto.sourceEventId === instanceUuid))
+                            .pipe(timeout({first: timeoutMs})),
+                    );
+                    return new SocketApiTxStatus(SocketApiAckStatus.success);
+                case SocketApiVariant.proto:
+                default:
+                    msg = await firstValueFrom(
+                        this.getMessageHandler(new proto.RxAck())
+                            .pipe(filter((event) => event.proto.uuid === instanceUuid))
+                            .pipe(timeout({first: timeoutMs})),
+                    );
+                    const status = msg.proto.errorMessage.length > 0 ? SocketApiAckStatus.messageError : SocketApiAckStatus.success;
+                    return new SocketApiTxStatus(
+                        status,
+                        msg.proto.errorMessage,
+                        msg.proto.errorCode,
+                    );
+            }
         } catch (e) {
             // timeout
             return new SocketApiTxStatus(SocketApiAckStatus.timeout, 'No response from server.');
@@ -157,6 +203,11 @@ export class SocketApi {
         if (message == null) return; // todo proper logging
         this._messageHandlers.get(messageData.messageType)?.next(message);
     }
+}
+
+export enum SocketApiVariant {
+    proto,
+    ilol
 }
 
 export enum SocketApiAckStatus {

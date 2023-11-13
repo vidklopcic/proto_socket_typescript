@@ -860,6 +860,103 @@ export namespace socket_api {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of an IlolAck. */
+    interface IIlolAck {
+
+        /** IlolAck sourceEventId */
+        sourceEventId?: (string|null);
+    }
+
+    /** Represents an IlolAck. */
+    class IlolAck implements IIlolAck {
+
+        /**
+         * Constructs a new IlolAck.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: socket_api.IIlolAck);
+
+        /** IlolAck sourceEventId. */
+        public sourceEventId: string;
+
+        /**
+         * Creates a new IlolAck instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns IlolAck instance
+         */
+        public static create(properties?: socket_api.IIlolAck): socket_api.IlolAck;
+
+        /**
+         * Encodes the specified IlolAck message. Does not implicitly {@link socket_api.IlolAck.verify|verify} messages.
+         * @param message IlolAck message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: socket_api.IIlolAck, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified IlolAck message, length delimited. Does not implicitly {@link socket_api.IlolAck.verify|verify} messages.
+         * @param message IlolAck message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: socket_api.IIlolAck, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an IlolAck message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns IlolAck
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): socket_api.IlolAck;
+
+        /**
+         * Decodes an IlolAck message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns IlolAck
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): socket_api.IlolAck;
+
+        /**
+         * Verifies an IlolAck message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an IlolAck message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns IlolAck
+         */
+        public static fromObject(object: { [k: string]: any }): socket_api.IlolAck;
+
+        /**
+         * Creates a plain object from an IlolAck message. Also converts values to other types if specified.
+         * @param message IlolAck
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: socket_api.IlolAck, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this IlolAck to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for IlolAck
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of an AsyncProgress. */
     interface IAsyncProgress {
 
@@ -1676,6 +1773,97 @@ export namespace authentication {
 
         /**
          * Gets the default type url for TokenInvalid
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a RefreshTokenInvalid. */
+    interface IRefreshTokenInvalid {
+    }
+
+    /** Represents a RefreshTokenInvalid. */
+    class RefreshTokenInvalid implements IRefreshTokenInvalid {
+
+        /**
+         * Constructs a new RefreshTokenInvalid.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: authentication.IRefreshTokenInvalid);
+
+        /**
+         * Creates a new RefreshTokenInvalid instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns RefreshTokenInvalid instance
+         */
+        public static create(properties?: authentication.IRefreshTokenInvalid): authentication.RefreshTokenInvalid;
+
+        /**
+         * Encodes the specified RefreshTokenInvalid message. Does not implicitly {@link authentication.RefreshTokenInvalid.verify|verify} messages.
+         * @param message RefreshTokenInvalid message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: authentication.IRefreshTokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified RefreshTokenInvalid message, length delimited. Does not implicitly {@link authentication.RefreshTokenInvalid.verify|verify} messages.
+         * @param message RefreshTokenInvalid message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: authentication.IRefreshTokenInvalid, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a RefreshTokenInvalid message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns RefreshTokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): authentication.RefreshTokenInvalid;
+
+        /**
+         * Decodes a RefreshTokenInvalid message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns RefreshTokenInvalid
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): authentication.RefreshTokenInvalid;
+
+        /**
+         * Verifies a RefreshTokenInvalid message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a RefreshTokenInvalid message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns RefreshTokenInvalid
+         */
+        public static fromObject(object: { [k: string]: any }): authentication.RefreshTokenInvalid;
+
+        /**
+         * Creates a plain object from a RefreshTokenInvalid message. Also converts values to other types if specified.
+         * @param message RefreshTokenInvalid
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: authentication.RefreshTokenInvalid, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this RefreshTokenInvalid to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for RefreshTokenInvalid
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

@@ -4,7 +4,7 @@ import * as ws from 'ws';
 const isBrowser = typeof window !== 'undefined';
 
 export class SocketConnector {
-    host: string;
+    host?: string;
     rx = new Subject<string>();
     private socket: WebSocket | ws | null = null;
     errorSubject = new Subject<Error>();
@@ -29,7 +29,7 @@ export class SocketConnector {
         });
     }
 
-    constructor(host: string) {
+    constructor(host?: string) {
         this.host = host;
         if (isBrowser) {
             window.addEventListener('focus', () => {
@@ -70,6 +70,10 @@ export class SocketConnector {
     }
 
     reconnect() {
+        const host = this.host;
+        if (!host) {
+            return;
+        }
         if (this.verbose) console.log('SocketConnector: reconnect');
         if (this._disconnected) {
             throw new Error('SocketConnector is disconnected');
@@ -81,10 +85,10 @@ export class SocketConnector {
 
         if (isBrowser) {
             if (this.verbose) console.log('SocketConnector: new WebSocket');
-            this.socket = new WebSocket(this.host);
+            this.socket = new WebSocket(host);
         } else {
             if (this.verbose) console.log('SocketConnector: new ws');
-            this.socket = new ws(this.host);
+            this.socket = new ws(host);
         }
 
         this.socket.onopen = () => {

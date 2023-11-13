@@ -1,5 +1,5 @@
+import {socket_api, uploader, authentication, sfiles} from "./compiled";
 import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
-import {socket_api, sfiles, uploader, authentication} from "./compiled";
 
 export namespace proto {
 
@@ -72,6 +72,25 @@ export class TxRefreshToken extends SocketTxMessage<authentication.RefreshToken>
     static create(properties: authentication.IRefreshToken = {}) {
         return new TxRefreshToken(authentication.RefreshToken.create(properties));
     }
+}
+
+
+export class RxRefreshTokenInvalid extends SocketRxMessage<authentication.RefreshTokenInvalid> {
+    static type: string = 'refresh-token-invalid';
+    proto = authentication.RefreshTokenInvalid.create({});
+    protoClass = authentication.RefreshTokenInvalid;
+    
+
+    constructor(message: SocketRxMessageData | null = null) {
+        super(RxRefreshTokenInvalid.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
+    }
+
+    fromMessage(message: SocketRxMessageData) {
+        return new RxRefreshTokenInvalid(message);
+    };
 }
 
 
@@ -257,6 +276,25 @@ export class RxAsyncProgress extends SocketRxMessage<socket_api.AsyncProgress> {
 }
 
 
+export class RxIlolAck extends SocketRxMessage<socket_api.IlolAck> {
+    static type: string = 'ilol_ack';
+    proto = socket_api.IlolAck.create({});
+    protoClass = socket_api.IlolAck;
+    
+
+    constructor(message: SocketRxMessageData | null = null) {
+        super(RxIlolAck.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
+    }
+
+    fromMessage(message: SocketRxMessageData) {
+        return new RxIlolAck(message);
+    };
+}
+
+
 export class RxUpgradeApiVersion extends SocketRxMessage<socket_api.UpgradeApiVersion> {
     static type: string = 'upgrade-api-version';
     proto = socket_api.UpgradeApiVersion.create({});
@@ -351,12 +389,14 @@ export class TxUploadUFile extends SocketTxMessage<uploader.UploadUFile> {
         export const rxMessages: SocketRxMessage<any>[] = [
             new RxLoginError(),
     new RxLoginToken(),
+    new RxRefreshTokenInvalid(),
     new RxTokenInvalid(),
     new RxUploadDone(),
     new RxUploadProgress(),
     new RxUploadStartSlot(),
     new RxAck(),
     new RxAsyncProgress(),
+    new RxIlolAck(),
     new RxUpgradeApiVersion(),
     new RxUploadSlot(),
     new RxUploadTask()
