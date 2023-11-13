@@ -9,7 +9,7 @@ export class SocketApi {
     apiVersion = 1;
     logging = false;
 
-    private _txMessageHandlers = new Map<string, Subject<SocketTxMessage<any>>>();
+    private _txMessageHandlers = new Map<string, Subject<any>>();
     private _messageHandlers = new Map<string, Subject<any>>();
     private _messageConverters = new Map<string, SocketRxMessage<any>>();
 
@@ -48,8 +48,8 @@ export class SocketApi {
     formatMessageType(messageType: string): string {
         switch (this.variant) {
             case SocketApiVariant.ilol:
-                if (messageType.includes('_')) {
-                    return messageType.split('_')[1];
+                if (messageType.includes('|')) {
+                    return messageType.split('|')[1];
                 } else {
                     return messageType;
                 }
@@ -57,6 +57,11 @@ export class SocketApi {
             default:
                 return messageType;
         }
+    }
+
+    getTxMessageHandler<T extends SocketTxMessage<any>>(message: T): Subject<T> {
+        const messageType = this.formatMessageType(message.messageType);
+        return this._txMessageHandlers.get(messageType) as Subject<T>;
     }
 
     getMessageHandler<T extends SocketRxMessage<any>>(message: T): Subject<T> {
@@ -109,6 +114,11 @@ export class SocketApi {
         }
 
         return result;
+    }
+
+    sendLocalUpdate(message: SocketRxMessage<any>) {
+        const messageType = this.formatMessageType(message.messageType);
+        this._messageHandlers.get(messageType)?.next(message);
     }
 
     async sendMessage(
