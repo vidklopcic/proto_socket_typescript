@@ -1,4 +1,4 @@
-import {socket_api, uploader, authentication, sfiles} from "./compiled";
+import {uploader, socket_api, sfiles, authentication} from "./compiled";
 import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
 
 export namespace proto {

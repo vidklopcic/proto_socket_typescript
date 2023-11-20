@@ -172,18 +172,20 @@ export class SocketApi {
             }
         }
 
-        if (!txHandler?.intercept) {
-            const msg = JSON.stringify({
-                body: message.data,
-                headers: getHeaders(),
-            });
-            if (this.logging) console.log('txevent:', msg);
-            try {
-                this.connection.send(msg);
-            } catch (e) {
-                console.log('error sending', e);
-                return new SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
-            }
+        if (txHandler?.intercept) {
+            return new SocketApiTxStatus(SocketApiAckStatus.success);
+        }
+
+        const msg = JSON.stringify({
+            body: message.data,
+            headers: getHeaders(),
+        });
+        if (this.logging) console.log('txevent:', msg);
+        try {
+            this.connection.send(msg);
+        } catch (e) {
+            console.log('error sending', e);
+            return new SocketApiTxStatus(SocketApiAckStatus.connectionError, 'Error sending the message.');
         }
 
         if (ack) {

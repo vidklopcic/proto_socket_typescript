@@ -7,6 +7,8 @@ export class SocketRxMessageData {
     private static keyMessageType = 'messageType';
     private static keyTrigger = 'trigger';
     private static keyUuid = 'uuid';
+    private static keyILOLUuid = 'sourceEventId';
+    private static keyILOLMessageType = 'eventName';
 
     // if message was retrieved from cache, this variable will store its original db id
     cacheUuid: string | null;
@@ -34,19 +36,23 @@ export class SocketRxMessageData {
 
     _raw: string | null;
 
+    get headers() {
+        return this.data[SocketRxMessageData.keyHeaders];
+    }
+
     // Tries to find the `messageType` attribute
     get messageType(): string {
-        return this.data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyMessageType];
+        return this.headers[SocketRxMessageData.keyMessageType] ?? this.headers[SocketRxMessageData.keyILOLMessageType];
     }
 
     // Tries to find the `uuid` attribute
     get uuid(): string {
-        return this.data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyUuid];
+        return this.headers[SocketRxMessageData.keyUuid] ?? this.body[SocketRxMessageData.keyILOLUuid];
     }
 
     // Tries to find the `trigger` attribute
     get trigger(): string | undefined {
-        return this.data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyTrigger];
+        return this.headers[SocketRxMessageData.keyTrigger];
     }
 
     // Decoded JSON map.
@@ -74,9 +80,9 @@ export class SocketRxMessageData {
         const data = JSON.parse(content);
         if (
             !data[SocketRxMessageData.keyHeaders] ||
-            !data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyMessageType]
+            (!data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyMessageType] && !data[SocketRxMessageData.keyHeaders][SocketRxMessageData.keyILOLMessageType])
         ) {
-            throw new Error('headers -> messageType is not defined in message: ' + content);
+            throw new Error('headers -> messageType / eventName is not defined in message: ' + content);
         }
         if (typeof data[SocketRxMessageData.keyBody] !== 'object') {
             throw new Error('body is not an object, but ' + typeof data[SocketRxMessageData.keyBody]);
