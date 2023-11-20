@@ -1,4 +1,4 @@
-import {uploader, socket_api, sfiles, authentication} from "./compiled";
+import {socket_api, uploader, authentication, sfiles} from "./compiled";
 import {SocketRxMessage, SocketRxMessageData, SocketTxMessage} from "../socket_messages";
 
 export namespace proto {
@@ -277,7 +277,7 @@ export class RxAsyncProgress extends SocketRxMessage<socket_api.AsyncProgress> {
 
 
 export class RxIlolAck extends SocketRxMessage<socket_api.IlolAck> {
-    static type: string = 'ilol_ack';
+    static type: string = 'ilol|ack';
     proto = socket_api.IlolAck.create({});
     protoClass = socket_api.IlolAck;
     
@@ -291,6 +291,25 @@ export class RxIlolAck extends SocketRxMessage<socket_api.IlolAck> {
 
     fromMessage(message: SocketRxMessageData) {
         return new RxIlolAck(message);
+    };
+}
+
+
+export class RxIlolError extends SocketRxMessage<socket_api.IlolError> {
+    static type: string = 'ilol|error';
+    proto = socket_api.IlolError.create({});
+    protoClass = socket_api.IlolError;
+    
+
+    constructor(message: SocketRxMessageData | null = null) {
+        super(RxIlolError.type, message);
+        if (message !== null) {
+            this.proto = this.protoClass.fromObject(message.body);
+        }
+    }
+
+    fromMessage(message: SocketRxMessageData) {
+        return new RxIlolError(message);
     };
 }
 
@@ -397,6 +416,7 @@ export class TxUploadUFile extends SocketTxMessage<uploader.UploadUFile> {
     new RxAck(),
     new RxAsyncProgress(),
     new RxIlolAck(),
+    new RxIlolError(),
     new RxUpgradeApiVersion(),
     new RxUploadSlot(),
     new RxUploadTask()

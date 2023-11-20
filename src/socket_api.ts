@@ -1,4 +1,4 @@
-import {filter, first, firstValueFrom, Subject, timeout} from 'rxjs';
+import {filter, first, firstValueFrom, race, Subject, timeout} from 'rxjs';
 import {proto} from './proto/messages';
 import {SocketConnector} from './socket_connector';
 import {v4 as uuidv4} from 'uuid';
@@ -201,10 +201,16 @@ export class SocketApi {
             switch (this.variant) {
                 case SocketApiVariant.ilol:
                     msg = await firstValueFrom(
-                        this.getMessageHandler(new proto.RxIlolAck())
+                        race(
+                            this.getMessageHandler(new proto.RxIlolAck()),
+                            this.getMessageHandler(new proto.RxIlolError())
+                        )
                             .pipe(filter((event) => event.proto.sourceEventId === instanceUuid))
                             .pipe(timeout({first: timeoutMs})),
                     );
+                    if (msg.messageType === proto.RxIlolError.type) {
+                        return new SocketApiTxStatus(SocketApiAckStatus.messageError, (msg as proto.RxIlolError).proto.reason);
+                    }
                     return new SocketApiTxStatus(SocketApiAckStatus.success);
                 case SocketApiVariant.proto:
                 default:
