@@ -6,7 +6,7 @@ const isBrowser = typeof window !== 'undefined';
 export class SocketConnector {
     host?: string;
     rx = new Subject<string>();
-    private socket: WebSocket | ws | null = null;
+    socket: WebSocket | ws | null = null;
     errorSubject = new Subject<Error>();
 
     connectedChanges = new Subject<boolean>();
