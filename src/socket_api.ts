@@ -138,7 +138,13 @@ export class SocketApi {
 
     async sendMessage(
         message: SocketTxMessage<any>,
-        {ack = false, timeoutMs = 10000, waitConnected = true, instanceUuid = undefined as string | undefined} = {},
+        {
+            ack = false,
+            timeoutMs = 10000,
+            waitConnected = true,
+            instanceUuid = undefined as string | undefined,
+            noAuthHeader = false
+        } = {},
     ): Promise<SocketApiTxStatus> {
         if (waitConnected) {
             await this.connection.whenConnected;
@@ -155,13 +161,13 @@ export class SocketApi {
                         eventTimestamp: Math.round(Date.now()),
                         eventName: messageType,
                         eventId: instanceUuid,
-                        authToken: this._token,
+                        authToken: noAuthHeader ? undefined : this._token,
                     };
                 case SocketApiVariant.proto:
                 default:
                     return {
                         messageType,
-                        authHeader: this._token,
+                        authHeader: noAuthHeader ? undefined : this._token,
                         eventTime: Date.now(),
                         localTime: Date.now(),
                         ack,

@@ -337,6 +337,9 @@ export namespace sfiles {
 
         /** UploadedFile name */
         name?: (string|null);
+
+        /** UploadedFile downloadable */
+        downloadable?: (boolean|null);
     }
 
     /** Represents an UploadedFile. */
@@ -365,6 +368,9 @@ export namespace sfiles {
 
         /** UploadedFile name. */
         public name: string;
+
+        /** UploadedFile downloadable. */
+        public downloadable: boolean;
 
         /**
          * Creates a new UploadedFile instance using the specified properties.

@@ -751,6 +751,7 @@ export const sfiles = $root.sfiles = (() => {
          * @property {string|null} [mime] UploadedFile mime
          * @property {string|null} [thumbUrl] UploadedFile thumbUrl
          * @property {string|null} [name] UploadedFile name
+         * @property {boolean|null} [downloadable] UploadedFile downloadable
          */
 
         /**
@@ -817,6 +818,14 @@ export const sfiles = $root.sfiles = (() => {
         UploadedFile.prototype.name = "";
 
         /**
+         * UploadedFile downloadable.
+         * @member {boolean} downloadable
+         * @memberof sfiles.UploadedFile
+         * @instance
+         */
+        UploadedFile.prototype.downloadable = false;
+
+        /**
          * Creates a new UploadedFile instance using the specified properties.
          * @function create
          * @memberof sfiles.UploadedFile
@@ -852,6 +861,8 @@ export const sfiles = $root.sfiles = (() => {
                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.thumbUrl);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.name);
+            if (message.downloadable != null && Object.hasOwnProperty.call(message, "downloadable"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.downloadable);
             return writer;
         };
 
@@ -910,6 +921,10 @@ export const sfiles = $root.sfiles = (() => {
                         message.name = reader.string();
                         break;
                     }
+                case 7: {
+                        message.downloadable = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -963,6 +978,9 @@ export const sfiles = $root.sfiles = (() => {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.downloadable != null && message.hasOwnProperty("downloadable"))
+                if (typeof message.downloadable !== "boolean")
+                    return "downloadable: boolean expected";
             return null;
         };
 
@@ -990,6 +1008,8 @@ export const sfiles = $root.sfiles = (() => {
                 message.thumbUrl = String(object.thumbUrl);
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.downloadable != null)
+                message.downloadable = Boolean(object.downloadable);
             return message;
         };
 
@@ -1013,6 +1033,7 @@ export const sfiles = $root.sfiles = (() => {
                 object.mime = "";
                 object.thumbUrl = "";
                 object.name = "";
+                object.downloadable = false;
             }
             if (message.localKey != null && message.hasOwnProperty("localKey"))
                 object.localKey = message.localKey;
@@ -1026,6 +1047,8 @@ export const sfiles = $root.sfiles = (() => {
                 object.thumbUrl = message.thumbUrl;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.downloadable != null && message.hasOwnProperty("downloadable"))
+                object.downloadable = message.downloadable;
             return object;
         };
 

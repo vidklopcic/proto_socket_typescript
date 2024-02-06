@@ -1,6 +1,6 @@
 {
   "name": "proto_socket_typescript",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "license": "MIT",
   "description": "Simple library that handles communication over websocket with 'proto_socket_django' backend.",
   "main": "lib/index.js",
@@ -25,6 +25,7 @@
   ],
   "author": "Vid Klopcic",
   "devDependencies": {
+    "@types/long": "^5.0.0",
     "@types/uuid": "^8.3.3",
     "copyfiles": "^2.4.1",
     "prettier": "^2.5.0",
@@ -34,8 +35,9 @@
   },
   "dependencies": {
     "@types/ws": "^8.5.5",
-    "protobufjs": "^6.11.3",
-    "rxjs": "^7.4.0",
+    "long": "^5.2.3",
+    "protobufjs": "^7.2.6",
+    "rxjs": "^7.8.1",
     "uuid": "^8.3.2",
     "ws": "^8.14.1"
   }
